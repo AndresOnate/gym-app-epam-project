@@ -1,0 +1,6 @@
+id,firstName,lastName,isActive,trainingType
+1,Tom,White,true,YOGA
+2,Emily,Green,true,ZUMBA
+3,David,Black,true,ZUMBA
+4,Linda,Blue,true,YOGA,
+5,James,Gray,false,STRETCHING

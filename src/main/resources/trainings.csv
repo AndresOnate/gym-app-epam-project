@@ -1,0 +1,6 @@
+id,traineeId,trainerId,trainingName,trainingType,trainingDate,trainingDuration
+1,1,1,Yoga Basics,YOGA,2025-03-10,60
+2,2,2,Strength Training Basics,ZUMBA,2025-03-12,90
+3,3,3,Running for Beginners,STRETCHING,2025-03-15,45
+4,4,1,Restorative Yoga,YOGA,2025-03-20,75
+5,5,2,Advanced Weight Training,RESISTANCE,2025-03-22,120

@@ -1,0 +1,6 @@
+id,firstName,lastName,isActive,address
+1,John,Doe,true,123 Elm St
+2,Jane,Smith,true,456 Oak St
+3,Bob,Johnson,false,789 Pine St
+4,Alice,Williams,true,101 Maple Ave
+5,Charlie,Brown,true,202 Birch Rd
