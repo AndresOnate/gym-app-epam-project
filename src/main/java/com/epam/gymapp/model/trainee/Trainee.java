@@ -43,15 +43,6 @@ public class Trainee extends User{
     }
 
     /**
-     * Sets the trainee's date of birth.
-     *
-     * @param dateOfBirth The new date of birth.
-     */
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    /**
      * Gets the trainee's address.
      *
      * @return The trainee's address.

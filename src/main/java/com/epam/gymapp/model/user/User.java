@@ -101,38 +101,12 @@ public class User {
     }
 
     /**
-     * Sets the first name of the user.
-     *
-     * @param firstName The new first name.
-     * @throws IllegalArgumentException if the first name is null or empty.
-     */
-    public void setFirstName(String firstName) {
-        if (firstName == null || firstName.trim().isEmpty()) {
-            throw new IllegalArgumentException("First Name is required.");
-        }
-        this.firstName = firstName;
-    }
-
-    /**
      * Gets the last name of the user.
      *
      * @return The user's last name.
      */
     public String getLastName() {
         return lastName;
-    }
-
-    /**
-     * Sets the last name of the user.
-     *
-     * @param lastName The new last name.
-     * @throws IllegalArgumentException if the last name is null or empty.
-     */
-    public void setLastName(String lastName) {
-        if (lastName == null || lastName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Last Name is required.");
-        }
-        this.lastName = lastName;
     }
 
     /**
