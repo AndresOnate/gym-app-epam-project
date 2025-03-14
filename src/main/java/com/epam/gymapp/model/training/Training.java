@@ -2,20 +2,55 @@ package com.epam.gymapp.model.training;
 
 import java.sql.Date;
 
+import com.epam.gymapp.model.trainee.Trainee;
+import com.epam.gymapp.model.trainer.Trainer;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+
 /**
  * The Training class represents a training session in the gym application.
  * It includes details such as the training ID, trainee ID, trainer ID, training name,
  * training type, training date, and training duration.
  */
+@Entity
+@Table(name = "trainings")
 public class Training {
 
-    private Long id;                  // The unique identifier for the training session
-    private Long traineeId;           // The ID of the trainee associated with the training
-    private Long trainerId;           // The ID of the trainer associated with the training
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;  
+
+    @ManyToOne  
+    @JoinColumn(name = "trainee_id", nullable = false)
+    private Trainee trainee;           // The ID of the trainee associated with the training
+    
+    @ManyToOne
+    @JoinColumn(name = "trainer_id", nullable = false)
+    private Trainer trainer;           // The ID of the trainer associated with the training
+
+    @Column(nullable = false)
     private String trainingName;      // The name of the training session
+
+    @ManyToOne
+    @JoinColumn(name = "training_type_id", nullable = false)
     private TrainingType trainingType; // The type of training
+
+    @Column(nullable = false)
     private Date trainingDate;        // The date of the training session
+
+    @Column(nullable = false)
     private int trainingDuration;     // The duration of the training session in minutes
+
+    public Training() {
+    }
 
 
     /**
@@ -29,12 +64,11 @@ public class Training {
      * @param trainingDate Date of the training session.
      * @param trainingDuration Duration of the training session in minutes.
      */
-    public Training(Long id, Long traineeId, Long trainerId, String trainingName, TrainingType trainingType, Date trainingDate, int trainingDuration) {
-        this.id = id;
-        this.traineeId = traineeId;
-        this.trainerId = trainerId;
-        this.trainingName = trainingName;
+    public Training(Trainee trainee, Trainer trainer, TrainingType trainingType, String trainingName, Date trainingDate, Integer trainingDuration) {
+        this.trainee = trainee;
+        this.trainer = trainer;
         this.trainingType = trainingType;
+        this.trainingName = trainingName;
         this.trainingDate = trainingDate;
         this.trainingDuration = trainingDuration;
     }
@@ -62,8 +96,8 @@ public class Training {
      *
      * @return The trainee ID.
      */
-    public Long getTraineeId() {
-        return traineeId;
+    public Trainee getTrainee() {
+        return trainee;
     }
 
     /**
@@ -71,8 +105,8 @@ public class Training {
      *
      * @param traineeId The new trainee ID.
      */
-    public void setTraineeId(Long traineeId) {
-        this.traineeId = traineeId;
+    public void setTraineeId(Trainee trainee) {
+        this.trainee = trainee;
     }
 
     /**
@@ -80,8 +114,8 @@ public class Training {
      *
      * @return The trainer ID.
      */
-    public Long getTrainerId() {
-        return trainerId;
+    public Trainer getTrainer() {
+        return trainer;
     }
 
     /**
@@ -89,8 +123,8 @@ public class Training {
      *
      * @param trainerId The new trainer ID.
      */
-    public void setTrainerId(Long trainerId) {
-        this.trainerId = trainerId;
+    public void setTrainerId(Trainer trainer) {
+        this.trainer = trainer;
     }
 
     /**
@@ -174,8 +208,8 @@ public class Training {
     public String toString() {
         return "Training{" +
                 "id=" + id +
-                ", trainee=" + traineeId +
-                ", trainer=" + trainerId +
+                ", trainee=" + trainee.getUsername() +
+                ", trainer=" + trainer.getUsername() +
                 ", trainingName='" + trainingName + '\'' +
                 ", trainingType=" + trainingType +
                 ", trainingDate=" + trainingDate +

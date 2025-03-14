@@ -1,9 +1,19 @@
 package com.epam.gymapp.model.training;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 /**
  * The TrainingType enum represents the different types of training available in the gym application.
  * Each training type has a unique ID and a name associated with it.
  */
+@Entity
+@Table(name = "training_types")
 public enum TrainingType {
 
     FITNESS(1L, "fitness"),      // Represents fitness training
@@ -12,7 +22,11 @@ public enum TrainingType {
     STRETCHING(4L, "stretching"),// Represents stretching training
     RESISTANCE(5L, "resistance");// Represents resistance training
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final Long id;       // The unique identifier for the training type
+
+    @Column(unique = true, nullable = false)
     private final String name;   // The name of the training type
 
     /**

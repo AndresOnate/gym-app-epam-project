@@ -1,14 +1,27 @@
 package com.epam.gymapp.model.trainer;
 
+import org.hibernate.annotations.ManyToAny;
+
 import com.epam.gymapp.model.training.TrainingType;
 import com.epam.gymapp.model.user.User;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
 
 /**
  * Represents a trainer in the gym system.
  * Extends the {@code User} class, inheriting basic user attributes and methods.
  */
+@Entity
+@Table(name = "trainers")
+@PrimaryKeyJoinColumn(name = "user_id")
 public class Trainer extends User{
 
+    @ManyToOne
+    @JoinColumn(name = "specialization_id", nullable = false)
     private TrainingType specialization;   // The area of specialization of the trainer
 
     /**
@@ -28,8 +41,8 @@ public class Trainer extends User{
      * @param trainingType The type of training the trainer provides.
      * @param specialization The trainer's area of specialization.
      */
-    public Trainer(Long id, String firstName, String lastName, Boolean isActive, TrainingType trainingType) {
-        super(id, firstName, lastName, isActive);
+    public Trainer(String firstName, String lastName, Boolean isActive, TrainingType trainingType) {
+        super(firstName, lastName, isActive);
         this.specialization = trainingType;
     }
 

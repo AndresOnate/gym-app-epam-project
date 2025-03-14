@@ -4,21 +4,45 @@ import java.security.SecureRandom;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
+
 /**
  * The User class represents a user in the gym application.
  * It includes details such as the user's ID, first name, last name, username, password, and active status.
  */
+
+ @Entity
+ @Inheritance(strategy = InheritanceType.JOINED)
+ @Table(name = "users")
 public class User {
 
     private static final Map<String, Integer> usernameCount = new ConcurrentHashMap<>();
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;            // The unique identifier for the user
+
+    @Column(nullable = false)
     private String firstName;   // The first name of the user
+
+    @Column(nullable = false)
     private String lastName;    // The last name of the user
+
+    @Column(unique = true, nullable = false)
     private String username;    // The username of the user
+
+    @Column(nullable = false)
     private String password;    // The password of the user
+
+    @Column(nullable = false)
     private boolean isActive;   // The active status of the user
 
     public User() {
@@ -34,8 +58,7 @@ public class User {
      * @param password  Password for the user's account.
      * @param isActive  Status indicating if the user is active.
      */
-    public User(Long id, String firstName, String lastName, Boolean isActive) {
-        this.id = id;
+    public User(String firstName, String lastName, Boolean isActive) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = generateUsername();

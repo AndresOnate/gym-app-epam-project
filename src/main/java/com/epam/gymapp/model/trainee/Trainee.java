@@ -4,13 +4,31 @@ import java.sql.Date;
 
 import com.epam.gymapp.model.user.User;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
+
 /**
  * Represents a trainee in the gym system.
  * Extends the {@code User} class, inheriting basic user attributes and methods.
  */
+@Entity
+@Table(name = "trainees")
+@PrimaryKeyJoinColumn(name = "user_id")
 public class Trainee extends User{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;                // The unique identifier for the trainee
+
+    @Column(nullable = true)
     private Date dateOfBirth;        // The date of birth of the trainee
+
+    @Column(nullable = true)
     private String address;         // The address of the trainee
 
     public Trainee() {}
@@ -28,7 +46,7 @@ public class Trainee extends User{
      * @param address Trainee's address.
      */
     public Trainee(Long id, String firstName, String lastName, Boolean isActive, Date dateOfBirth, String address) {
-        super(id, firstName, lastName, isActive);
+        super(firstName, lastName, isActive);
         this.dateOfBirth = dateOfBirth;
         this.address = address;
     }
