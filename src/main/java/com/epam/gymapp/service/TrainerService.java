@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import com.epam.gymapp.model.trainer.Trainer;
-import com.epam.gymapp.repository.TrainerDao;
+import com.epam.gymapp.repository.TrainerRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 /**
  * Service layer for managing operations related to the Trainer entity.
@@ -22,10 +24,10 @@ public class TrainerService {
     private static final Logger logger = LoggerFactory.getLogger(TrainerService.class);
 
     @Autowired
-    private TrainerDao trainerDao; // Field-Based Injection
+    private TrainerRepository trainerRepository; // Field-Based Injection
 
-    public TrainerService(TrainerDao trainerDao){
-        this.trainerDao = trainerDao;
+    public TrainerService(TrainerRepository trainerDao){
+        this.trainerRepository = trainerDao;
     }
 
     /**
@@ -35,7 +37,7 @@ public class TrainerService {
      */
     public List<Trainer> getAll() {
         logger.info("Fetching all trainers...");
-        return trainerDao.getAll();
+        return trainerRepository.findAll();
     }
 
     /**
@@ -46,7 +48,7 @@ public class TrainerService {
      */
     public Trainer getById(Long id) {
         logger.info("Fetching trainer with ID: {}", id);
-        return trainerDao.getById(id).orElse(null);
+        return trainerRepository.findById(id).orElse(null);
     }
 
     /**
@@ -57,7 +59,7 @@ public class TrainerService {
      */
     public Trainer save(Trainer trainer) {
         logger.info("Saving new trainer: {}", trainer);
-        return trainerDao.save(trainer);
+        return trainerRepository.save(trainer);
     }
 
     /**
@@ -67,17 +69,21 @@ public class TrainerService {
      * @param updatedTrainer the updated Trainer object with new values
      * @return the updated Trainer object
      */
-    public Trainer update(Long id, Trainer updatedTrainer) {
-        logger.info("Updating trainer with ID: {}", id);
-        try {
-            Trainer updated = trainerDao.update(id, updatedTrainer);
-            logger.info("Trainer with ID: {} successfully updated", id);
-            return updated;
-        } catch (Exception e) {
-            logger.error("Error updating trainer with ID: {}", id, e);
-            throw e;
-        }
-    }
+public Trainer update(Long id, Trainer updatedTrainer) {
+    logger.info("Updating trainer with ID: {}", id);
+    return trainerRepository.findById(id)
+            .map(existingTrainer -> {
+                existingTrainer.setSpecialization(updatedTrainer.getSpecialization());
+                existingTrainer.setIsActive(updatedTrainer.getIsActive());
+                Trainer savedTrainer = trainerRepository.save(existingTrainer);
+                logger.info("Trainer with ID: {} successfully updated", id);
+                return savedTrainer;
+            })
+            .orElseThrow(() -> {
+                logger.error("Trainer with ID: {} not found", id);
+                return new EntityNotFoundException("Trainer not found with ID: " + id);
+            });
+}
 
     /**
      * Deletes a trainer from the database.
@@ -87,7 +93,7 @@ public class TrainerService {
     public void delete(Long id) {
         logger.info("Deleting trainer: {}", id);
         try {
-            trainerDao.delete(id);
+            trainerRepository.deleteById(id);
             logger.info("Trainer successfully deleted: {}", id);
         } catch (Exception e) {
             logger.error("Error deleting trainer: {}", id, e);

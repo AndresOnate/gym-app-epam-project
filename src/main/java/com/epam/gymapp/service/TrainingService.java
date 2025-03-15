@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import com.epam.gymapp.model.training.Training;
-import com.epam.gymapp.repository.TrainingDao;
+import com.epam.gymapp.repository.TrainingRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 /**
  * Service layer for managing operations related to the Training entity.
@@ -21,7 +23,7 @@ public class TrainingService {
     private static final Logger logger = LoggerFactory.getLogger(TrainingService.class);
 
     @Autowired
-    private TrainingDao trainingDao; // Field-Based Injection
+    private TrainingRepository trainingRepository; // Field-Based Injection
 
     /**
      * Retrieves all trainings from the database.
@@ -30,7 +32,7 @@ public class TrainingService {
      */
     public List<Training> getAll() {
         logger.info("Fetching all trainings");
-        return trainingDao.getAll();
+        return trainingRepository.findAll();
     }
 
     /**
@@ -41,7 +43,7 @@ public class TrainingService {
      */
     public Training getById(Long id) {
         logger.info("Fetching training with ID: {}", id);
-        return trainingDao.getById(id).orElse(null);
+        return trainingRepository.findById(id).orElse(null);
     }
 
     /**
@@ -52,7 +54,7 @@ public class TrainingService {
      */
     public Training save(Training training) {
         logger.info("Saving new training: {}", training);
-        return trainingDao.save(training);
+        return trainingRepository.save(training);
     }
 
     /**
@@ -63,15 +65,24 @@ public class TrainingService {
      * @return the updated Training object
      */
     public Training update(Long id, Training updatedTraining) {
-        try {
-            logger.info("Updating training with ID: {}", id);
-            return trainingDao.update(id, updatedTraining);
-        } catch (Exception e) {
-            logger.error("Error updating training with ID: {}", id, e);
-            return null;
-        }
-    }
+        logger.info("Updating training with ID: {}", id);
 
+        return trainingRepository.findById(id)
+                .map(existingTraining -> {
+                    existingTraining.setTrainingName(updatedTraining.getTrainingName());
+                    existingTraining.setTrainingDuration(updatedTraining.getTrainingDuration());
+                    existingTraining.setTrainingDate(updatedTraining.getTrainingDate());
+                    existingTraining.setTrainingType(updatedTraining.getTrainingType());
+                    Training savedTraining = trainingRepository.save(existingTraining);
+                    logger.info("Training with ID: {} successfully updated", id);
+                    return savedTraining;
+                })
+                .orElseThrow(() -> {
+                    logger.error("Training with ID: {} not found", id);
+                    return new EntityNotFoundException("Training not found with ID: " + id);
+                });
+    }
+    
     /**
      * Deletes a training from the database.
      * 
@@ -80,7 +91,7 @@ public class TrainingService {
     public void delete(Long id) {
         try {
             logger.info("Deleting training: {}", id);
-            trainingDao.delete(id);
+            trainingRepository.deleteById(id);
         } catch (Exception e) {
             logger.error("Error deleting training: {}", id, e);
         }

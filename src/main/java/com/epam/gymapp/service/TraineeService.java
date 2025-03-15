@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.epam.gymapp.model.trainee.Trainee;
-import com.epam.gymapp.repository.TraineeDao;
+import com.epam.gymapp.repository.TraineeRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 /**
  * Service layer for managing operations related to the Trainee entity.
@@ -22,10 +24,10 @@ public class TraineeService {
     private static final Logger logger = LoggerFactory.getLogger(TraineeService.class);
 
     @Autowired
-    private TraineeDao traineeDao;
+    private TraineeRepository traineeRepository;
 
-    public TraineeService(TraineeDao traineeDao){
-        this. traineeDao = traineeDao;
+    public TraineeService(TraineeRepository traineeDao){
+        this. traineeRepository = traineeDao;
     }
     
     /**
@@ -35,7 +37,7 @@ public class TraineeService {
      */
     public List<Trainee> getAll() {
         logger.info("Fetching all trainees...");
-        return traineeDao.getAll();
+        return traineeRepository.findAll();
     }
 
     /**
@@ -46,7 +48,7 @@ public class TraineeService {
      */
     public Trainee getById(Long id) {
         logger.info("Fetching trainee with ID: {}", id);
-        return traineeDao.getById(id).orElse(null);
+        return traineeRepository.findById(id).orElse(null);
     }
 
     /**
@@ -58,7 +60,7 @@ public class TraineeService {
      */
     public Trainee save(Trainee trainee) {
         logger.info("Saving new trainee: {}", trainee);
-        return traineeDao.save(trainee);
+        return traineeRepository.save(trainee);
     }
 
     /**
@@ -68,17 +70,21 @@ public class TraineeService {
      * @param updatedTrainee the updated Trainee object with new values
      * @return the updated Trainee object
      */
-    public Trainee update(Long id, Trainee updatedTrainee) {
-        logger.info("Updating trainee with ID: {}", id);
-        try {
-            Trainee updated = traineeDao.update(id, updatedTrainee);
-            logger.info("Trainee with ID: {} successfully updated", id);
-            return updated;
-        } catch (Exception e) {
-            logger.error("Error updating trainee with ID: {}", id, e);
-            throw e;
-        }
-    }
+public Trainee update(Long id, Trainee updatedTrainee) {
+    logger.info("Updating trainee with ID: {}", id);
+    return traineeRepository.findById(id)
+            .map(existingTrainee -> {
+                existingTrainee.setAddress(updatedTrainee.getAddress());
+                existingTrainee.setIsActive(updatedTrainee.getIsActive());
+                Trainee savedTrainee = traineeRepository.save(existingTrainee);
+                logger.info("Trainee with ID: {} successfully updated", id);
+                return savedTrainee;
+            })
+            .orElseThrow(() -> {
+                logger.error("Trainee with ID: {} not found", id);
+                return new EntityNotFoundException("Trainee not found with ID: " + id);
+            });
+}
 
     /**
      * Deletes a trainee from the database.
@@ -88,7 +94,7 @@ public class TraineeService {
     public void delete(Long id) {
         logger.info("Deleting trainee: {}", id);
         try {
-            traineeDao.delete(id);
+            traineeRepository.deleteById(id);
             logger.info("Trainee successfully deleted: {}", id);
         } catch (Exception e) {
             logger.error("Error deleting trainee: {}", id, e);
