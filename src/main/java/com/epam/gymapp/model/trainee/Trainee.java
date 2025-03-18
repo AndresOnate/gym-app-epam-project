@@ -18,12 +18,12 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "trainees")
-@PrimaryKeyJoinColumn(name = "user_id")
 public class Trainee extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;                // The unique identifier for the trainee
+    @Column(name = "trainee_id")
+    private Long traineeId;             // The unique identifier of the trainee
 
     @Column(nullable = true)
     private Date dateOfBirth;        // The date of birth of the trainee
@@ -45,11 +45,12 @@ public class Trainee extends User{
      * @param dateOfBirth Trainee's date of birth.
      * @param address Trainee's address.
      */
-    public Trainee(Long id, String firstName, String lastName, Boolean isActive, Date dateOfBirth, String address) {
+    public Trainee(String firstName, String lastName, Boolean isActive, Date dateOfBirth, String address) {
         super(firstName, lastName, isActive);
         this.dateOfBirth = dateOfBirth;
         this.address = address;
     }
+
 
     /**
      * Gets the trainee's date of birth.

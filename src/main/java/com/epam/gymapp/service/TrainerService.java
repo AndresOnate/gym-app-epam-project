@@ -24,10 +24,10 @@ public class TrainerService {
     private static final Logger logger = LoggerFactory.getLogger(TrainerService.class);
 
     @Autowired
-    private TrainerRepository trainerRepository; // Field-Based Injection
+    private final TrainerRepository trainerRepository; // Field-Based Injection
 
-    public TrainerService(TrainerRepository trainerDao){
-        this.trainerRepository = trainerDao;
+    public TrainerService(TrainerRepository trainerRepository){
+        this.trainerRepository = trainerRepository;
     }
 
     /**
@@ -69,21 +69,21 @@ public class TrainerService {
      * @param updatedTrainer the updated Trainer object with new values
      * @return the updated Trainer object
      */
-public Trainer update(Long id, Trainer updatedTrainer) {
-    logger.info("Updating trainer with ID: {}", id);
-    return trainerRepository.findById(id)
-            .map(existingTrainer -> {
-                existingTrainer.setSpecialization(updatedTrainer.getSpecialization());
-                existingTrainer.setIsActive(updatedTrainer.getIsActive());
-                Trainer savedTrainer = trainerRepository.save(existingTrainer);
-                logger.info("Trainer with ID: {} successfully updated", id);
+    public Trainer update(Long id, Trainer updatedTrainer) {
+        logger.info("Updating trainer with ID: {}", id);
+        return trainerRepository.findById(id)
+        .map(existingTrainer -> {
+            existingTrainer.setSpecialization(updatedTrainer.getSpecialization());
+            existingTrainer.setIsActive(updatedTrainer.getIsActive());
+            Trainer savedTrainer = trainerRepository.save(existingTrainer);
+            logger.info("Trainer with ID: {} successfully updated", id);
                 return savedTrainer;
-            })
-            .orElseThrow(() -> {
-                logger.error("Trainer with ID: {} not found", id);
-                return new EntityNotFoundException("Trainer not found with ID: " + id);
-            });
-}
+        })
+        .orElseThrow(() -> {
+            logger.error("Trainer with ID: {} not found", id);
+            return new EntityNotFoundException("Trainer not found with ID: " + id);
+        });
+    }
 
     /**
      * Deletes a trainer from the database.

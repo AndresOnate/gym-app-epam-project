@@ -2,10 +2,13 @@ package com.epam.gymapp.model.trainer;
 
 import org.hibernate.annotations.ManyToAny;
 
-import com.epam.gymapp.model.training.TrainingType;
+import com.epam.gymapp.model.trainingType.TrainingType;
 import com.epam.gymapp.model.user.User;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
@@ -17,8 +20,11 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "trainers")
-@PrimaryKeyJoinColumn(name = "user_id")
 public class Trainer extends User{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;             // The unique identifier of the trainer
 
     @ManyToOne
     @JoinColumn(name = "specialization_id", nullable = false)
@@ -45,7 +51,7 @@ public class Trainer extends User{
         super(firstName, lastName, isActive);
         this.specialization = trainingType;
     }
-
+    
     /**
      * Gets the trainer's specialization.
      *
@@ -78,5 +84,6 @@ public class Trainer extends User{
            ", isActive=" + getIsActive() + 
            ", specialization=" + specialization +
            '}';
-}
+    }
+
 }

@@ -26,8 +26,8 @@ public class TraineeService {
     @Autowired
     private TraineeRepository traineeRepository;
 
-    public TraineeService(TraineeRepository traineeDao){
-        this. traineeRepository = traineeDao;
+    public TraineeService(TraineeRepository traineeRepository){
+        this.traineeRepository = traineeRepository;
     }
     
     /**
@@ -70,21 +70,21 @@ public class TraineeService {
      * @param updatedTrainee the updated Trainee object with new values
      * @return the updated Trainee object
      */
-public Trainee update(Long id, Trainee updatedTrainee) {
-    logger.info("Updating trainee with ID: {}", id);
-    return traineeRepository.findById(id)
-            .map(existingTrainee -> {
-                existingTrainee.setAddress(updatedTrainee.getAddress());
-                existingTrainee.setIsActive(updatedTrainee.getIsActive());
-                Trainee savedTrainee = traineeRepository.save(existingTrainee);
-                logger.info("Trainee with ID: {} successfully updated", id);
-                return savedTrainee;
-            })
-            .orElseThrow(() -> {
-                logger.error("Trainee with ID: {} not found", id);
-                return new EntityNotFoundException("Trainee not found with ID: " + id);
-            });
-}
+    public Trainee update(Long id, Trainee updatedTrainee) {
+        logger.info("Updating trainee with ID: {}", id);
+        return traineeRepository.findById(id)
+        .map(existingTrainee -> {
+            existingTrainee.setAddress(updatedTrainee.getAddress());
+            existingTrainee.setIsActive(updatedTrainee.getIsActive());
+            Trainee savedTrainee = traineeRepository.save(existingTrainee);
+            logger.info("Trainee with ID: {} successfully updated", id);
+            return savedTrainee;
+        })
+        .orElseThrow(() -> {
+            logger.error("Trainee with ID: {} not found", id);
+            return new EntityNotFoundException("Trainee not found with ID: " + id);
+        });
+    }
 
     /**
      * Deletes a trainee from the database.

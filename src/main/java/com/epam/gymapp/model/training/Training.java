@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import com.epam.gymapp.model.trainee.Trainee;
 import com.epam.gymapp.model.trainer.Trainer;
+import com.epam.gymapp.model.trainingType.TrainingType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,13 +29,13 @@ public class Training {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;  
 
-    @ManyToOne  
-    @JoinColumn(name = "trainee_id", nullable = false)
-    private Trainee trainee;           // The ID of the trainee associated with the training
+    @ManyToOne
+    @JoinColumn(name = "trainee_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    private Trainee trainee;
     
     @ManyToOne
-    @JoinColumn(name = "trainer_id", nullable = false)
-    private Trainer trainer;           // The ID of the trainer associated with the training
+    @JoinColumn(name = "trainer_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    private Trainer trainer;        // The ID of the trainer associated with the training
 
     @Column(nullable = false)
     private String trainingName;      // The name of the training session
@@ -51,7 +52,6 @@ public class Training {
 
     public Training() {
     }
-
 
     /**
      * Constructs a {@code Training} object with the specified attributes.

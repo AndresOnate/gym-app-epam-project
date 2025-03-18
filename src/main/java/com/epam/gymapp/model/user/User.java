@@ -19,8 +19,8 @@ import jakarta.persistence.Table;
  */
 
  @Entity
- @Inheritance(strategy = InheritanceType.JOINED)
  @Table(name = "users")
+ @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
     private static final Map<String, Integer> usernameCount = new ConcurrentHashMap<>();
@@ -28,6 +28,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;            // The unique identifier for the user
 
     @Column(nullable = false)
