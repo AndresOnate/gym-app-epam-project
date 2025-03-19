@@ -75,7 +75,6 @@ public class TraineeService {
         return traineeRepository.findById(id)
         .map(existingTrainee -> {
             existingTrainee.setAddress(updatedTrainee.getAddress());
-            existingTrainee.setIsActive(updatedTrainee.getIsActive());
             Trainee savedTrainee = traineeRepository.save(existingTrainee);
             logger.info("Trainee with ID: {} successfully updated", id);
             return savedTrainee;

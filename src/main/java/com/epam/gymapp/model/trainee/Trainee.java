@@ -1,7 +1,10 @@
 package com.epam.gymapp.model.trainee;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import com.epam.gymapp.model.trainer.Trainer;
 import com.epam.gymapp.model.user.User;
 
 import jakarta.persistence.Column;
@@ -9,7 +12,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -18,18 +24,31 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "trainees")
-public class Trainee extends User{
+public class Trainee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "trainee_id")
-    private Long traineeId;             // The unique identifier of the trainee
+    private Long id;             // The unique identifier of the trainee
 
     @Column(nullable = true)
     private Date dateOfBirth;        // The date of birth of the trainee
 
     @Column(nullable = true)
     private String address;         // The address of the trainee
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    private User user;
+
+    @ManyToMany
+    @JoinTable(
+        name = "trainee_trainer",  // Nombre de la tabla intermedia
+        joinColumns = @JoinColumn(name = "trainee_id"),  // Clave foránea hacia Trainee
+        inverseJoinColumns = @JoinColumn(name = "trainer_id")  // Clave foránea hacia Trainer
+    )
+    private Set<Trainer> trainers = new HashSet<>();  // Set de Trainers asociados con el Trainee
+
 
     public Trainee() {}
 
@@ -45,8 +64,7 @@ public class Trainee extends User{
      * @param dateOfBirth Trainee's date of birth.
      * @param address Trainee's address.
      */
-    public Trainee(String firstName, String lastName, Boolean isActive, Date dateOfBirth, String address) {
-        super(firstName, lastName, isActive);
+    public Trainee(Date dateOfBirth, String address) {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
     }
@@ -80,13 +98,41 @@ public class Trainee extends User{
     }
 
     /**
+     * Retrieves the user associated with this trainee.
+     * 
+     * This method returns the reference to the {@link User} object representing
+     * the user linked to the trainee. The relationship is one-to-one.
+     *
+     * @return The {@link User} object associated with this trainee.
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Sets the user associated with this trainee.
+     * 
+     * This method assigns a {@link User} object to this trainee. It establishes
+     * the one-to-one relationship between the trainee and the user.
+     *
+     * @param user The {@link User} object representing the user to be associated with the trainee.
+     * @throws IllegalArgumentException If the provided user is {@code null}.
+     */
+    public void setUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null.");
+        }
+        this.user = user;
+    }
+
+    /**
      * Returns a string representation of the trainee.
      *
      * @return A string containing the trainee's details.
      */
     @Override
     public String toString() {
-        return "Trainee{id=" + getId() + ", firstName='" + getFirstName() + "', lastName='" + getLastName() + 
-               "', username='" + getUsername() + "', dateOfBirth=" + dateOfBirth + ", address='" + address + "'}";
+        return "Trainee{id=" + id + ", firstName='" + user.getFirstName() + "', lastName='" + user.getLastName() + 
+               "', username='" + user.getUsername() + "', dateOfBirth=" + dateOfBirth + ", address='" + address + "'}";
     }
 }

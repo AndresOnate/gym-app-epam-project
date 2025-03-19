@@ -9,8 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+
 import jakarta.persistence.Table;
 
 /**
@@ -20,7 +19,6 @@ import jakarta.persistence.Table;
 
  @Entity
  @Table(name = "users")
- @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
     private static final Map<String, Integer> usernameCount = new ConcurrentHashMap<>();

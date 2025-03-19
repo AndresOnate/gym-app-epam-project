@@ -74,7 +74,6 @@ public class TrainerService {
         return trainerRepository.findById(id)
         .map(existingTrainer -> {
             existingTrainer.setSpecialization(updatedTrainer.getSpecialization());
-            existingTrainer.setIsActive(updatedTrainer.getIsActive());
             Trainer savedTrainer = trainerRepository.save(existingTrainer);
             logger.info("Trainer with ID: {} successfully updated", id);
                 return savedTrainer;

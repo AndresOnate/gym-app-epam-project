@@ -30,11 +30,11 @@ public class Training {
     private Long id;  
 
     @ManyToOne
-    @JoinColumn(name = "trainee_id", referencedColumnName = "user_id", insertable = false, updatable = false)
-    private Trainee trainee;
+    @JoinColumn(name = "trainee_id")
+    private Trainee trainee;      // The ID of the trainee associated with the training
     
     @ManyToOne
-    @JoinColumn(name = "trainer_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "trainer_id")
     private Trainer trainer;        // The ID of the trainer associated with the training
 
     @Column(nullable = false)
@@ -208,8 +208,8 @@ public class Training {
     public String toString() {
         return "Training{" +
                 "id=" + id +
-                ", trainee=" + trainee.getUsername() +
-                ", trainer=" + trainer.getUsername() +
+                ", trainee=" + trainee.getUser().getUsername() +
+                ", trainer=" + trainee.getUser().getUsername() +
                 ", trainingName='" + trainingName + '\'' +
                 ", trainingType=" + trainingType +
                 ", trainingDate=" + trainingDate +
