@@ -1,6 +1,9 @@
 package com.epam.gymapp.repository;
 
 
+import java.sql.Date;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.epam.gymapp.model.training.Training;
@@ -15,4 +18,12 @@ import com.epam.gymapp.model.training.Training;
  */
 @Repository
 public interface TrainingRepository extends JpaRepository<Training, Long> {
+
+    List<Training> findByTraineeUserUsernameAndTrainingDateBetweenAndTrainerUserUsernameContainingAndTrainingTypeNameContaining(
+        String traineeUsername, Date fromDate, Date toDate, String trainerName, String trainingType
+    );
+
+    List<Training> findByTrainerUserUsernameAndTrainingDateBetweenAndTraineeUserUsernameContaining(
+        String trainerUsername, Date fromDate, Date toDate, String traineeName
+    );
 }

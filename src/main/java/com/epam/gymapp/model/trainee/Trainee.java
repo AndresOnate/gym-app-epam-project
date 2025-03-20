@@ -126,6 +126,27 @@ public class Trainee {
     }
 
     /**
+     * Gets the trainers associated with this trainee.
+     *
+     * @return The set of {@link Trainer} objects associated with this trainee.
+     */
+    public Set<Trainer> getTrainers() {
+        return trainers;
+    }
+
+    /**
+     * Sets the trainers for this trainee.
+     *
+     * @param trainers The set of {@link Trainer} objects to be associated with this trainee.
+     */
+    public void setTrainers(Set<Trainer> trainers) {
+        if (trainers == null) {
+            throw new IllegalArgumentException("Trainers cannot be null.");
+        }
+        this.trainers = trainers;
+    }
+
+    /**
      * Returns a string representation of the trainee.
      *
      * @return A string containing the trainee's details.

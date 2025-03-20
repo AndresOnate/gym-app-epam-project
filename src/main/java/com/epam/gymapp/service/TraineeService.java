@@ -1,6 +1,8 @@
 package com.epam.gymapp.service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.epam.gymapp.model.trainee.Trainee;
+import com.epam.gymapp.model.trainer.Trainer;
 import com.epam.gymapp.repository.TraineeRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -90,15 +93,46 @@ public class TraineeService {
      * 
      * @param trainee the Trainee object to delete
      */
-    public void delete(Long id) {
-        logger.info("Deleting trainee: {}", id);
-        try {
-            traineeRepository.deleteById(id);
-            logger.info("Trainee successfully deleted: {}", id);
-        } catch (Exception e) {
-            logger.error("Error deleting trainee: {}", id, e);
-            throw e;
+    public void deleteTrainee(Long traineeId) {
+        Optional<Trainee> traineeOptional = traineeRepository.findById(traineeId);
+        if (traineeOptional.isPresent()) {
+            Trainee trainee = traineeOptional.get();
+            traineeRepository.delete(trainee); 
+            logger.info("Trainee with ID {} deleted successfully.", traineeId);
+        } else {
+            throw new RuntimeException("Trainee not found with ID " + traineeId);
         }
+    }
+
+        /**
+     * Finds a Trainee by their username.
+     *
+     * @param username The username to search for.
+     * @return The Trainee object if found, or an empty Optional if not found.
+     */
+    public Optional<Trainee> findByUsername(String username) {
+        logger.info("Searching for trainee with username: {}", username);
+        Optional<Trainee> trainee = traineeRepository.findByUserUsername(username);
+        if (trainee.isPresent()) {
+            logger.info("Trainee with username '{}' found.", username);
+        } else {
+            logger.warn("Trainee with username '{}' not found.", username);
+        }
+        return trainee;
+    }
+
+        /**
+     * Updates the list of trainers for a trainee.
+     *
+     * @param traineeUsername The username of the trainee.
+     * @param trainers The new list of trainers to assign.
+     */
+    public void updateTraineeTrainers(String traineeUsername, Set<Trainer> trainers) {
+        logger.info("Updating trainers for trainee: {}", traineeUsername);
+        Trainee trainee = traineeRepository.findByUserUsername(traineeUsername)
+                .orElseThrow(() -> new RuntimeException("Trainee not found"));
+        trainee.setTrainers(trainers);
+        traineeRepository.save(trainee);
     }
     
 }

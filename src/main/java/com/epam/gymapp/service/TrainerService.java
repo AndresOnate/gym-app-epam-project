@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.epam.gymapp.model.trainer.Trainer;
 import com.epam.gymapp.repository.TrainerRepository;
@@ -98,5 +99,33 @@ public class TrainerService {
             logger.error("Error deleting trainer: {}", id, e);
             throw e;
         }
+    }
+
+    /**
+    * Finds a Trainer by their username.
+    *
+    * @param username The username to search for.
+    * @return The Trainer object if found, or an empty Optional if not found.
+    */
+   public Optional<Trainer> findByUsername(String username) {
+       logger.info("Searching for trainer with username: {}", username);
+       Optional<Trainer> trainer = trainerRepository.findByUserUsername(username);
+       if (trainer.isPresent()) {
+           logger.info("Trainer with username '{}' found.", username);
+       } else {
+           logger.warn("Trainer with username '{}' not found.", username);
+       }
+       return trainer;
+   }
+
+    /**
+     * Get trainers that are NOT assigned to a specific trainee.
+     */
+    public List<Trainer> getUnassignedTrainers(String traineeUsername) {
+        logger.info("Fetching unassigned trainers for trainee: {}", traineeUsername);
+        List<Trainer> allTrainers = trainerRepository.findAll();
+        List<Trainer> assignedTrainers = trainerRepository.findAssignedTrainersByTraineeUsername(traineeUsername);
+        allTrainers.removeAll(assignedTrainers); 
+        return allTrainers;
     }
 }

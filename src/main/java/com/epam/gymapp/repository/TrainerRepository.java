@@ -1,7 +1,12 @@
 package com.epam.gymapp.repository;
 
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.epam.gymapp.model.trainer.Trainer;
 
@@ -15,5 +20,20 @@ import com.epam.gymapp.model.trainer.Trainer;
  */
 @Repository
 public interface TrainerRepository extends JpaRepository<Trainer, Long> {
+
+    /**
+     * Finds a Trainer by the username of the associated User.
+     *
+     * @param username The username to search for.
+     * @return The Trainer object if found, or an empty Optional if not found.
+     */
+    Optional<Trainer> findByUserUsername(String username);
+
+    /**
+     * Find all trainers assigned to a specific trainee.
+     */
+    @Query("SELECT DISTINCT t.trainer FROM Training t WHERE t.trainee.user.username = :traineeUsername")
+    List<Trainer> findAssignedTrainersByTraineeUsername(@Param("traineeUsername") String traineeUsername);
+
 
 }

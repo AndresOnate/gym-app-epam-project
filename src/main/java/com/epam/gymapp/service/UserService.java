@@ -10,6 +10,12 @@ import org.springframework.stereotype.Service;
 import com.epam.gymapp.model.user.User;
 import com.epam.gymapp.repository.UserRepository;
 
+/**
+ * Service layer for managing operations related to the User entity.
+ * This service class provides methods to interact with the underlying data
+ * repository (UserRepository) for creating, retrieving, updating, and deleting
+ * User objects, as well as handling authentication, password changes, and user status updates.
+ */
 @Service
 public class UserService {
 
@@ -27,8 +33,6 @@ public class UserService {
      */
     public User save(User user) {
         logger.info("Attempting to save a new user with username: {}", user.getUsername());
-
-        // Check if the username already exists in the database
         Optional<User> existingUser = userRepository.findByUsername(user.getUsername());
         if (existingUser.isPresent()) {
             logger.error("Username '{}' already exists in the database.", user.getUsername());
@@ -81,5 +85,50 @@ public class UserService {
 
         logger.info("User with username '{}' successfully authenticated.", username);
         return user;
+    }
+
+        /**
+     * Changes the password of a user if the old password matches.
+     *
+     * @param username    The username of the user.
+     * @param oldPassword The current password of the user.
+     * @param newPassword The new password to set.
+     * @throws RuntimeException If the old password doesn't match or if any error occurs.
+     */
+    public void changePassword(String username, String oldPassword, String newPassword) {
+        logger.info("Attempting to change password for user: {}", username);
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+        User user = optionalUser.get();
+        if (!user.getPassword().equals(oldPassword)) {
+            throw new RuntimeException("Old password is incorrect");
+        }
+        if (newPassword == null || newPassword.length() < 8) {
+            throw new RuntimeException("New password must be at least 8 characters long.");
+        }
+        user.setPassword(newPassword);
+        userRepository.save(user);
+        logger.info("Password changed successfully for user: {}", username);
+    }
+
+    /**
+     * Activates or deactivates a user based on the provided status.
+     *
+     * @param username The username of the user.
+     * @param isActive The new active status (true for activation, false for deactivation).
+     * @throws RuntimeException If the user is not found.
+     */
+    public void changeUserStatus(String username, boolean isActive) {
+        logger.info("Changing status for user: {} to {}", username, isActive ? "ACTIVE" : "INACTIVE");
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+        User user = optionalUser.get();
+        user.setIsActive(isActive);
+        userRepository.save(user);
+        logger.info("User {} is now {}", username, isActive ? "ACTIVE" : "INACTIVE");
     }
 }

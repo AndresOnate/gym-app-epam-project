@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Date;
 import java.util.List;
 
 import com.epam.gymapp.model.training.Training;
@@ -95,5 +97,29 @@ public class TrainingService {
         } catch (Exception e) {
             logger.error("Error deleting training: {}", id, e);
         }
+    }
+
+    /**
+     * Retrieves trainings for a specific trainee based on filters.
+     */
+    public List<Training> getTraineeTrainings(String traineeUsername, Date fromDate, Date toDate, 
+                                              String trainerName, String trainingType) {
+        logger.info("Fetching trainings for trainee: {}, from: {}, to: {}, trainer: {}, type: {}",
+                traineeUsername, fromDate, toDate, trainerName, trainingType);
+
+        return trainingRepository.findByTraineeUserUsernameAndTrainingDateBetweenAndTrainerUserUsernameContainingAndTrainingTypeNameContaining(
+                traineeUsername, fromDate, toDate, trainerName, trainingType);
+    }
+
+    /**
+     * Retrieves trainings for a specific trainer based on filters.
+     */
+    public List<Training> getTrainerTrainings(String trainerUsername, Date fromDate, Date toDate, 
+                                              String traineeName) {
+        logger.info("Fetching trainings for trainer: {}, from: {}, to: {}, trainee: {}",
+                trainerUsername, fromDate, toDate, traineeName);
+
+        return trainingRepository.findByTrainerUserUsernameAndTrainingDateBetweenAndTraineeUserUsernameContaining(
+                trainerUsername, fromDate, toDate, traineeName);
     }
 }
