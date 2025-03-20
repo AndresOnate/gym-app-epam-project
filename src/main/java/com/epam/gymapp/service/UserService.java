@@ -34,6 +34,7 @@ public class UserService {
     public User save(User user) {
         logger.info("Attempting to save a new user with username: {}", user.getUsername());
         Optional<User> existingUser = userRepository.findByUsername(user.getUsername());
+        System.out.println("existingUser: " + existingUser);
         if (existingUser.isPresent()) {
             logger.error("Username '{}' already exists in the database.", user.getUsername());
             throw new IllegalArgumentException("Username already exists.");
