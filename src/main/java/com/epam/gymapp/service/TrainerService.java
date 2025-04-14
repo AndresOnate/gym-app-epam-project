@@ -7,9 +7,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import com.epam.gymapp.dto.RegistrationDto;
+import com.epam.gymapp.dto.TraineeDto;
+import com.epam.gymapp.dto.TraineeProfileDto;
+import com.epam.gymapp.dto.TrainerDto;
+import com.epam.gymapp.dto.TrainerProfileDto;
+import com.epam.gymapp.exception.NotFoundException;
+import com.epam.gymapp.model.trainee.Trainee;
 import com.epam.gymapp.model.trainer.Trainer;
+import com.epam.gymapp.model.trainingType.TrainingType;
+import com.epam.gymapp.model.trainingType.TrainingTypeEnum;
+import com.epam.gymapp.model.user.User;
 import com.epam.gymapp.repository.TrainerRepository;
+import com.epam.gymapp.repository.TrainingTypeRepository;
+import com.epam.gymapp.repository.UserRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -26,8 +39,12 @@ public class TrainerService {
 
     @Autowired
     private final TrainerRepository trainerRepository; // Field-Based Injection
+    private final UserRepository userRepository; // Field-Based Injection
+    private final TrainingTypeRepository trainingTypeRepository; // Field-Based Injection
 
-    public TrainerService(TrainerRepository trainerRepository){
+    public TrainerService(TrainerRepository trainerRepository, UserRepository userRepository, TrainingTypeRepository trainingTypeRepository) {
+        this.trainingTypeRepository = trainingTypeRepository;
+        this.userRepository = userRepository;
         this.trainerRepository = trainerRepository;
     }
 
@@ -58,9 +75,17 @@ public class TrainerService {
      * @param trainer the Trainer object to save
      * @return the saved Trainer object
      */
-    public Trainer save(Trainer trainer) {
+    public RegistrationDto save(TrainerDto trainerDto) {
+        TrainingTypeEnum typeEnum = TrainingTypeEnum.valueOf(trainerDto.getSpecialization().toUpperCase());
+        TrainingType trainingType = trainingTypeRepository.findByName(typeEnum)
+                                  .orElseThrow(() -> new RuntimeException("Tipo de entrenamiento no encontrado"));
+        Trainer trainer = new Trainer(trainerDto);
+        User user = trainer.getUser();
+        userRepository.save(user);
         logger.info("Saving new trainer: {}", trainer);
-        return trainerRepository.save(trainer);
+        trainer.setSpecialization(trainingType);
+        trainer = trainerRepository.save(trainer);
+        return new RegistrationDto(user.getUsername(), user.getPassword());
     }
 
     /**
@@ -121,11 +146,108 @@ public class TrainerService {
     /**
      * Get trainers that are NOT assigned to a specific trainee.
      */
-    public List<Trainer> getUnassignedTrainers(String traineeUsername) {
+    public List<TrainerDto> getUnassignedTrainers(String traineeUsername) {
         logger.info("Fetching unassigned trainers for trainee: {}", traineeUsername);
         List<Trainer> allTrainers = trainerRepository.findAll();
         List<Trainer> assignedTrainers = trainerRepository.findAssignedTrainersByTraineeUsername(traineeUsername);
         allTrainers.removeAll(assignedTrainers); 
-        return allTrainers;
+        List<TrainerDto> allTrainersDto = allTrainers.stream()
+            .map(trainer -> {
+                TrainerDto dto = new TrainerDto();
+                dto.setUsername(trainer.getUser().getUsername());
+                dto.setFirstName(trainer.getUser().getFirstName());
+                dto.setLastName(trainer.getUser().getLastName());
+                dto.setSpecialization(trainer.getSpecialization().getName().toString());
+                return dto;
+            })
+            .collect(Collectors.toList());
+        return allTrainersDto;
+
+
+    }
+
+    /**
+     * Retrieves the profile of a trainer by their username.
+     * 
+     * @param username the username of the trainer
+     * @return the TrainerProfileDto object containing the trainer's profile information
+     */
+    public TrainerProfileDto getTrainerProfileByUsername(String username) {
+        Optional<Trainer> trainerOptional = trainerRepository.findByUserUsername(username);
+        if (trainerOptional.isEmpty()) {
+            throw new NotFoundException("Trainer not found with username: " + username);
+        }
+        Trainer trainer = trainerOptional.get();
+        TrainerProfileDto dto = new TrainerProfileDto();
+        dto.setFirstName(trainer.getUser().getFirstName());
+        dto.setLastName(trainer.getUser().getLastName());
+        dto.setSpecialization(trainer.getSpecialization().getName().toString());
+        dto.setIsActive(trainer.getUser().getIsActive());
+
+        List<TraineeDto> trainees = trainer.getTrainees().stream()
+            .map(t -> {
+                TraineeDto tsd = new TraineeDto();
+                tsd.setUsername(t.getUser().getUsername());
+                tsd.setFirstName(t.getUser().getFirstName());
+                tsd.setLastName(t.getUser().getLastName());
+                return tsd;
+            })
+            .collect(Collectors.toList());
+
+        dto.setTrainees(trainees);
+        return dto;
+    }
+
+    
+    /**
+     * Updates the trainer's profile information.
+     * 
+     * @param username the username of the trainer to update
+     * @param requestDto the updated profile information
+     * @return the updated TrainerProfileDto object
+     */
+    public TrainerProfileDto updateTrainerProfile(String username, TrainerProfileDto requestDto) {
+        Trainer trainer = trainerRepository.findByUserUsername(username)
+            .orElseThrow(() -> new NotFoundException("Trainer not found with username: " + username));
+
+        trainer.getUser().setFirstName(requestDto.getFirstName());
+        trainer.getUser().setLastName(requestDto.getLastName());
+        trainer.getUser().setIsActive(requestDto.getIsActive());
+
+        trainerRepository.save(trainer);
+
+
+        TrainerProfileDto dto = new TrainerProfileDto();
+        dto.setUsername(trainer.getUser().getUsername());
+        dto.setFirstName(trainer.getUser().getFirstName());
+        dto.setLastName(trainer.getUser().getLastName());
+        dto.setSpecialization(trainer.getSpecialization().getName().toString());
+        dto.setIsActive(trainer.getUser().getIsActive());
+
+        List<TraineeDto> trainees = trainer.getTrainees().stream()
+            .map(t -> {
+                TraineeDto tsd = new TraineeDto();
+                tsd.setUsername(t.getUser().getUsername());
+                tsd.setFirstName(t.getUser().getFirstName());
+                tsd.setLastName(t.getUser().getLastName());
+                return tsd;
+            })
+            .collect(Collectors.toList());
+
+        dto.setTrainees(trainees);
+        return dto;
+    }
+
+    /**
+     * Updates the status of a trainer (active/inactive).
+     * 
+     * @param username the username of the trainer to update
+     * @param isActive the new status (true for active, false for inactive)
+     */
+    public void updateStatus(String username, boolean isActive) {
+        Trainer trainer = trainerRepository.findByUserUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("Aprendiz no encontrado con username: " + username));
+        trainer.getUser().setActive(isActive);
+        trainerRepository.save(trainer);
     }
 }

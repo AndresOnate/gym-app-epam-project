@@ -2,6 +2,7 @@ package com.epam.gymapp.model.training;
 
 import java.sql.Date;
 
+import com.epam.gymapp.dto.TrainingDto;
 import com.epam.gymapp.model.trainee.Trainee;
 import com.epam.gymapp.model.trainer.Trainer;
 import com.epam.gymapp.model.trainingType.TrainingType;
@@ -41,7 +42,7 @@ public class Training {
     private String trainingName;      // The name of the training session
 
     @ManyToOne
-    @JoinColumn(name = "training_type_id", nullable = false)
+    @JoinColumn(name = "training_type_id")
     private TrainingType trainingType; // The type of training
 
     @Column(nullable = false)
@@ -197,6 +198,24 @@ public class Training {
      */
     public void setTrainingDuration(int trainingDuration) {
         this.trainingDuration = trainingDuration;
+    }
+
+    /**
+     * Sets the trainee associated with this training session.
+     *
+     * @param trainee The new trainee.
+     */
+    public void setTrainee(Trainee trainee) {
+        this.trainee = trainee;
+    }
+
+    /**
+     * Sets the trainer associated with this training session.
+     *
+     * @param trainer The new trainer.
+     */
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
     }
 
     /**

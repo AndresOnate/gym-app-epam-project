@@ -4,9 +4,11 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.epam.gymapp.dto.TraineeDto;
 import com.epam.gymapp.model.trainer.Trainer;
 import com.epam.gymapp.model.user.User;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +39,7 @@ public class Trainee {
     @Column(nullable = true)
     private String address;         // The address of the trainee
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private User user;
 
@@ -69,6 +71,18 @@ public class Trainee {
         this.address = address;
     }
 
+    public Trainee(Long id, User user, Date dateOfBirth, String address, Set<Trainer> trainers) {
+        this.user = user;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.trainers = trainers;
+    }
+
+    public Trainee(TraineeDto traineeDto) {
+        this.user = new User(traineeDto.getFirstName(), traineeDto.getLastName(), true);
+        this.dateOfBirth = traineeDto.getDateOfBirth();
+        this.address = traineeDto.getAddress();    
+    }
 
     /**
      * Gets the trainee's date of birth.
@@ -144,6 +158,11 @@ public class Trainee {
             throw new IllegalArgumentException("Trainers cannot be null.");
         }
         this.trainers = trainers;
+    }
+
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     /**

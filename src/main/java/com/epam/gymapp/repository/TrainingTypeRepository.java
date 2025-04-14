@@ -1,8 +1,11 @@
 package com.epam.gymapp.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.epam.gymapp.model.trainingType.TrainingType;
+import com.epam.gymapp.model.trainingType.TrainingTypeEnum;
 
 
 /**
@@ -14,5 +17,6 @@ import com.epam.gymapp.model.trainingType.TrainingType;
  */
 @Repository
 public interface TrainingTypeRepository extends JpaRepository<TrainingType, Long> {
+    Optional<TrainingType> findByName(TrainingTypeEnum name);
 
 }

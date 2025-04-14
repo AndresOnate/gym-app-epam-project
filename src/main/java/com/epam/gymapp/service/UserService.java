@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.epam.gymapp.exception.NotFoundException;
 import com.epam.gymapp.model.user.User;
 import com.epam.gymapp.repository.UserRepository;
 
@@ -76,7 +77,7 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
             logger.error("User with username '{}' not found during authentication.", username);
-            throw new RuntimeException("User not found");
+            throw new NotFoundException("User not found");
         }
         User user = optionalUser.get();
         if (!user.getPassword().equals(password)) {
@@ -100,7 +101,7 @@ public class UserService {
         logger.info("Attempting to change password for user: {}", username);
         Optional<User> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
-            throw new RuntimeException("User not found");
+            throw new NotFoundException("User not found");
         }
         User user = optionalUser.get();
         if (!user.getPassword().equals(oldPassword)) {

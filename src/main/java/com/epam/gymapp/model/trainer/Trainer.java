@@ -5,10 +5,13 @@ import java.util.Set;
 
 import org.hibernate.annotations.ManyToAny;
 
+import com.epam.gymapp.dto.TrainerDto;
 import com.epam.gymapp.model.trainee.Trainee;
 import com.epam.gymapp.model.trainingType.TrainingType;
+import com.epam.gymapp.model.trainingType.TrainingTypeEnum;
 import com.epam.gymapp.model.user.User;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +40,7 @@ public class Trainer{
     @JoinColumn(name = "specialization_id", nullable = false)
     private TrainingType specialization;   // The area of specialization of the trainer
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private User user;
 
@@ -65,7 +68,19 @@ public class Trainer{
     public Trainer(TrainingType trainingType) {
         this.specialization = trainingType;
     }
-    
+
+    public Trainer(Long id, TrainingType specialization, User user, Set<Trainee> trainees) {
+        this.id = id;
+        this.specialization = specialization;
+        this.user = user;
+        this.trainees = trainees;
+    }
+
+    public Trainer(TrainerDto trainerDto) {
+        this.user = new User(trainerDto.getFirstName(), trainerDto.getLastName(), true);
+        this.specialization = new TrainingType(TrainingTypeEnum.valueOf(trainerDto.getSpecialization().toUpperCase()));
+    }
+
     /**
      * Gets the trainer's specialization.
      *
@@ -111,6 +126,16 @@ public class Trainer{
             throw new IllegalArgumentException("User cannot be null.");
         }
         this.user = user;
+    }
+
+    
+
+    public Set<Trainee> getTrainees() {
+        return trainees;
+    }
+
+    public void setTrainees(Set<Trainee> trainees) {
+        this.trainees = trainees;
     }
 
     /**
