@@ -16,7 +16,6 @@ import jakarta.persistence.EntityNotFoundException;
 
 import com.epam.gymapp.dto.*;
 import com.epam.gymapp.exception.NotFoundException;
-import com.epam.gymapp.model.*;
 import com.epam.gymapp.model.trainer.Trainer;
 import com.epam.gymapp.model.trainingType.TrainingType;
 import com.epam.gymapp.model.trainingType.TrainingTypeEnum;
