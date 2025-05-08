@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -148,22 +149,22 @@ public class TrainerService {
      */
     public List<TrainerDto> getUnassignedTrainers(String traineeUsername) {
         logger.info("Fetching unassigned trainers for trainee: {}", traineeUsername);
-        List<Trainer> allTrainers = trainerRepository.findAll();
+        List<Trainer> allTrainers = new ArrayList<>(trainerRepository.findAll()); // Copia mutable
         List<Trainer> assignedTrainers = trainerRepository.findAssignedTrainersByTraineeUsername(traineeUsername);
         allTrainers.removeAll(assignedTrainers); 
-        List<TrainerDto> allTrainersDto = allTrainers.stream()
+
+        return allTrainers.stream()
             .map(trainer -> {
                 TrainerDto dto = new TrainerDto();
                 dto.setUsername(trainer.getUser().getUsername());
                 dto.setFirstName(trainer.getUser().getFirstName());
                 dto.setLastName(trainer.getUser().getLastName());
-                dto.setSpecialization(trainer.getSpecialization().getName().toString());
+                dto.setSpecialization(trainer.getSpecialization() != null && trainer.getSpecialization().getName() != null
+                    ? trainer.getSpecialization().getName().toString()
+                    : null);
                 return dto;
             })
             .collect(Collectors.toList());
-        return allTrainersDto;
-
-
     }
 
     /**
@@ -181,9 +182,12 @@ public class TrainerService {
         TrainerProfileDto dto = new TrainerProfileDto();
         dto.setFirstName(trainer.getUser().getFirstName());
         dto.setLastName(trainer.getUser().getLastName());
-        dto.setSpecialization(trainer.getSpecialization().getName().toString());
+        dto.setSpecialization(
+                trainer.getSpecialization() != null && trainer.getSpecialization().getName() != null
+                    ? trainer.getSpecialization().getName().toString()
+                    : null
+        );  
         dto.setIsActive(trainer.getUser().getIsActive());
-
         List<TraineeDto> trainees = trainer.getTrainees().stream()
             .map(t -> {
                 TraineeDto tsd = new TraineeDto();
@@ -221,7 +225,11 @@ public class TrainerService {
         dto.setUsername(trainer.getUser().getUsername());
         dto.setFirstName(trainer.getUser().getFirstName());
         dto.setLastName(trainer.getUser().getLastName());
-        dto.setSpecialization(trainer.getSpecialization().getName().toString());
+        dto.setSpecialization(
+            trainer.getSpecialization() != null && trainer.getSpecialization().getName() != null
+                ? trainer.getSpecialization().getName().toString()
+                : null
+        );
         dto.setIsActive(trainer.getUser().getIsActive());
 
         List<TraineeDto> trainees = trainer.getTrainees().stream()

@@ -39,12 +39,10 @@ public class TraineeService {
     @Autowired
     private TraineeRepository traineeRepository;
     private UserRepository userRepository;
-    private TrainingTypeRepository trainingTypeRepository; 
     private TrainerRepository trainerRepository;
 
-    public TraineeService(TraineeRepository traineeRepository, UserRepository userRepository, TrainingTypeRepository trainingTypeRepository, TrainerRepository trainerRepository) {
+    public TraineeService(TraineeRepository traineeRepository, UserRepository userRepository, TrainerRepository trainerRepository) {
         this.trainerRepository = trainerRepository;
-        this.trainingTypeRepository = trainingTypeRepository;
         this.traineeRepository = traineeRepository;
         this.userRepository = userRepository;
     }
@@ -177,7 +175,11 @@ public class TraineeService {
                         trainerDto.setUsername(trainer.getUser().getUsername());
                         trainerDto.setFirstName(trainer.getUser().getFirstName());
                         trainerDto.setLastName(trainer.getUser().getLastName());
-                        trainerDto.setSpecialization(trainer.getSpecialization().getName().toString());
+                        trainerDto.setSpecialization(
+                            trainer.getSpecialization() != null && trainer.getSpecialization().getName() != null
+                                ? trainer.getSpecialization().getName().toString()
+                                : null
+                        );  
                         return trainerDto;})
                 .collect(Collectors.toList());
     }
@@ -190,28 +192,36 @@ public class TraineeService {
      * @throws NotFoundException if the trainee is not found.
      */
     public TraineeProfileDto getProfileByUsername(String username) {
-        Optional<Trainee> trainee = traineeRepository.findByUserUsername(username);
-        if (trainee.isEmpty()) {
-            throw new NotFoundException("Trainee not found with username: " + username);
+        Trainee trainee = traineeRepository.findByUserUsername(username)
+            .orElseThrow(() -> new NotFoundException("Trainee not found with username: " + username));
+        
+        User user = trainee.getUser();
+        if (user == null) {
+            throw new NotFoundException("User information missing for trainee with username: " + username);
         }
-        Trainee traineeEntity = trainee.get();
-        User user = traineeEntity.getUser();
+    
         TraineeProfileDto profile = new TraineeProfileDto();
         profile.setFirstName(user.getFirstName());
         profile.setLastName(user.getLastName());
-        profile.setDateOfBirth(traineeEntity.getDateOfBirth().toLocalDate());
-        profile.setAddress(traineeEntity.getAddress());
-        profile.setActive(user.getIsActive().booleanValue());
-
-        List<TrainerDto> trainers = traineeEntity.getTrainers().stream().map(trainer -> {
+        profile.setDateOfBirth(trainee.getDateOfBirth() != null ? trainee.getDateOfBirth().toLocalDate() : null);
+        profile.setAddress(trainee.getAddress());
+        profile.setActive(Boolean.TRUE.equals(user.getIsActive())); // más seguro para Boolean
+    
+        List<TrainerDto> trainers = trainee.getTrainers().stream().map(trainer -> {
             TrainerDto dto = new TrainerDto();
-            dto.setUsername(trainer.getUser().getUsername());
-            dto.setFirstName(trainer.getUser().getFirstName());
-            dto.setLastName(trainer.getUser().getLastName());
-            dto.setSpecialization(trainer.getSpecialization().getName().toString());
+            User trainerUser = trainer.getUser();
+            dto.setUsername(trainerUser != null ? trainerUser.getUsername() : null);
+            dto.setFirstName(trainerUser != null ? trainerUser.getFirstName() : null);
+            dto.setLastName(trainerUser != null ? trainerUser.getLastName() : null);
+            
+            dto.setSpecialization(
+                trainer.getSpecialization() != null && trainer.getSpecialization().getName() != null
+                    ? trainer.getSpecialization().getName().toString()
+                    : null
+            );
             return dto;
         }).collect(Collectors.toList());
-
+    
         profile.setTrainers(trainers);
         return profile;
     }
