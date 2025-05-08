@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.epam.gymapp.dto.RegistrationDto;
-import com.epam.gymapp.dto.TraineeProfileDto;
 import com.epam.gymapp.dto.TrainerDto;
 import com.epam.gymapp.dto.TrainerProfileDto;
 import com.epam.gymapp.dto.TrainingDto;
@@ -29,27 +27,35 @@ import com.epam.gymapp.service.TrainingService;
 import jakarta.validation.Valid;
 
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+
+
 @RestController
 @RequestMapping("/api/v1/trainers")
 public class TrainerController {
 
-    private TrainerService trainerService;
-    private TrainingService trainingService;
-
+    private final TrainerService trainerService;
+    private final TrainingService trainingService;
+    private final Counter registerTrainerCounter;
+    private final Counter updateTrainerProfileCounter;
 
     @Autowired
-    public TrainerController(TrainerService trainerService, TrainingService trainingService) {
+    public TrainerController(TrainerService trainerService, TrainingService trainingService, MeterRegistry meterRegistry) {
         this.trainingService = trainingService;
         this.trainerService = trainerService;
+        this.registerTrainerCounter = meterRegistry.counter("trainer_registration_total", "action", "register");
+        this.updateTrainerProfileCounter = meterRegistry.counter("trainer_profile_update_total", "action", "update_profile");
     }
 
     @PostMapping
     public ResponseEntity<RegistrationDto> registerTrainer(@Valid @RequestBody TrainerDto trainerDto) {
+        registerTrainerCounter.increment();
         return ResponseEntity.ok(trainerService.save(trainerDto));       
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<TrainerProfileDto> getTraineeProfile(@PathVariable String username) {
+    public ResponseEntity<TrainerProfileDto> getTrainerProfile(@PathVariable String username) {
         TrainerProfileDto profile = trainerService.getTrainerProfileByUsername(username);
         return ResponseEntity.ok(profile);
     }
@@ -58,6 +64,7 @@ public class TrainerController {
     public ResponseEntity<TrainerProfileDto> updateTrainerProfile(
             @PathVariable String username,
             @RequestBody @Valid TrainerProfileDto requestDto) {
+        updateTrainerProfileCounter.increment();
         TrainerProfileDto updatedProfile = trainerService.updateTrainerProfile(username, requestDto);
         return ResponseEntity.ok(updatedProfile);
     }
@@ -80,7 +87,7 @@ public class TrainerController {
     }
 
     @PatchMapping("/{username}/status")
-    public ResponseEntity<?> updateTraineeStatus(
+    public ResponseEntity<?> updateTrainerStatus(
             @PathVariable String username,
             @RequestBody Map<String, Boolean> statusUpdate) {
         Boolean isActive = statusUpdate.get("isActive");
@@ -90,5 +97,4 @@ public class TrainerController {
         trainerService.updateStatus(username, isActive);
         return ResponseEntity.ok().build();
     }
-
 }
