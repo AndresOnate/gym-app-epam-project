@@ -1,16 +1,12 @@
 package com.epam.gymapp.service;
 
-import java.util.Collections;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +22,10 @@ import com.epam.gymapp.repository.UserRepository;
  */
 @Service
 public class UserService{
+
+    @Autowired
+    private LoginAttemptService loginAttemptService;
+
 
     private UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -87,6 +87,11 @@ public class UserService{
     public User authenticate(String username, String password) {
         logger.info("Attempting to authenticate user with username: {}", username);
 
+        if (loginAttemptService.isBlocked(username)) {
+            long secondsLeft = loginAttemptService.getRemainingBlockTime(username);
+            throw new RuntimeException("User is blocked. Try again in " + secondsLeft + " seconds.");
+        }
+
         Optional<User> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
             logger.error("User with username '{}' not found during authentication.", username);
@@ -94,10 +99,11 @@ public class UserService{
         }
         User user = optionalUser.get();
         if (!passwordEncoder.matches(password, user.getPassword())) {
+            loginAttemptService.loginFailed(username);
             logger.error("Invalid password provided for user '{}'.", username);
             throw new BadCredentialsException("Invalid password");
         }
-
+        loginAttemptService.loginSucceeded(username);
         logger.info("User with username '{}' successfully authenticated.", username);
         return user;
     }
