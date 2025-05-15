@@ -1,5 +1,6 @@
 package com.epam.gymapp.service;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -7,6 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +26,7 @@ import com.epam.gymapp.repository.UserRepository;
  * User objects, as well as handling authentication, password changes, and user status updates.
  */
 @Service
-public class UserService{
+public class UserService implements UserDetailsService{
 
     @Autowired
     private LoginAttemptService loginAttemptService;
@@ -151,6 +156,17 @@ public class UserService{
         user.setIsActive(isActive);
         userRepository.save(user);
         logger.info("User {} is now {}", username, isActive ? "ACTIVE" : "INACTIVE");
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return new org.springframework.security.core.userdetails.User(
+            user.getUsername(),
+            user.getPassword(),
+            Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
+        );
     }
 
 }
