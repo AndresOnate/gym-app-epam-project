@@ -3,6 +3,7 @@ package com.epam.gymapp.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -42,11 +43,13 @@ public class TrainerService {
     private final TrainerRepository trainerRepository; // Field-Based Injection
     private final UserRepository userRepository; // Field-Based Injection
     private final TrainingTypeRepository trainingTypeRepository; // Field-Based Injection
+    private final PasswordEncoder passwordEncoder;
 
-    public TrainerService(TrainerRepository trainerRepository, UserRepository userRepository, TrainingTypeRepository trainingTypeRepository) {
+    public TrainerService(TrainerRepository trainerRepository, UserRepository userRepository, TrainingTypeRepository trainingTypeRepository, PasswordEncoder passwordEncoder) {
         this.trainingTypeRepository = trainingTypeRepository;
         this.userRepository = userRepository;
         this.trainerRepository = trainerRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -82,11 +85,13 @@ public class TrainerService {
                                   .orElseThrow(() -> new RuntimeException("Tipo de entrenamiento no encontrado"));
         Trainer trainer = new Trainer(trainerDto);
         User user = trainer.getUser();
+        String generatedPassword = user.getPassword();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         logger.info("Saving new trainer: {}", trainer);
         trainer.setSpecialization(trainingType);
         trainer = trainerRepository.save(trainer);
-        return new RegistrationDto(user.getUsername(), user.getPassword());
+        return new RegistrationDto(user.getUsername(), generatedPassword);
     }
 
     /**

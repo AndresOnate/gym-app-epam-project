@@ -1,10 +1,17 @@
 package com.epam.gymapp.service;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.epam.gymapp.exception.NotFoundException;
@@ -18,10 +25,16 @@ import com.epam.gymapp.repository.UserRepository;
  * User objects, as well as handling authentication, password changes, and user status updates.
  */
 @Service
-public class UserService {
+public class UserService{
+
+    private UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    private UserRepository userRepository;
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -40,7 +53,7 @@ public class UserService {
             logger.error("Username '{}' already exists in the database.", user.getUsername());
             throw new IllegalArgumentException("Username already exists.");
         }
-
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
         logger.info("User with username '{}' successfully saved.", savedUser.getUsername());
         return savedUser;
@@ -80,9 +93,9 @@ public class UserService {
             throw new NotFoundException("User not found");
         }
         User user = optionalUser.get();
-        if (!user.getPassword().equals(password)) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             logger.error("Invalid password provided for user '{}'.", username);
-            throw new RuntimeException("Invalid password");
+            throw new BadCredentialsException("Invalid password");
         }
 
         logger.info("User with username '{}' successfully authenticated.", username);
@@ -104,8 +117,8 @@ public class UserService {
             throw new NotFoundException("User not found");
         }
         User user = optionalUser.get();
-        if (!user.getPassword().equals(oldPassword)) {
-            throw new RuntimeException("Old password is incorrect");
+        if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
+            throw new BadCredentialsException("Old password is incorrect");
         }
         if (newPassword == null || newPassword.length() < 8) {
             throw new RuntimeException("New password must be at least 8 characters long.");
@@ -133,4 +146,5 @@ public class UserService {
         userRepository.save(user);
         logger.info("User {} is now {}", username, isActive ? "ACTIVE" : "INACTIVE");
     }
+
 }
