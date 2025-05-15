@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.epam.gymapp.dto.TraineeDto;
 import com.epam.gymapp.dto.TraineeProfileDto;
@@ -40,11 +41,13 @@ public class TraineeService {
     private TraineeRepository traineeRepository;
     private UserRepository userRepository;
     private TrainerRepository trainerRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public TraineeService(TraineeRepository traineeRepository, UserRepository userRepository, TrainerRepository trainerRepository) {
+    public TraineeService(TraineeRepository traineeRepository, UserRepository userRepository, TrainerRepository trainerRepository, PasswordEncoder passwordEncoder) {
         this.trainerRepository = trainerRepository;
         this.traineeRepository = traineeRepository;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
     
     /**
@@ -78,10 +81,12 @@ public class TraineeService {
     public RegistrationDto save(TraineeDto traineeDto) {
         Trainee trainee = new Trainee(traineeDto);
         User user = trainee.getUser();
+        String generatedPassword = user.getPassword();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(trainee.getUser()); 
         logger.info("Saving new trainee: {}", trainee);
         trainee = traineeRepository.save(trainee);
-        return new RegistrationDto(user.getUsername(), user.getPassword());
+        return new RegistrationDto(user.getUsername(), generatedPassword);
     }
 
     /**
