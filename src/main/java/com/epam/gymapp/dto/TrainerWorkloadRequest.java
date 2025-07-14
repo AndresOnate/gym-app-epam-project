@@ -11,12 +11,7 @@ public class TrainerWorkloadRequest {
     private Integer trainingDuration; // in hours or minutes
     private ActionType actionType;
 
-    public enum ActionType {
-        ADD,
-        DELETE
-    }
 
-    // Constructor (optional, but good for building requests)
     public TrainerWorkloadRequest() {}
 
     public TrainerWorkloadRequest(String trainerUsername, String trainerFirstName, String trainerLastName,
