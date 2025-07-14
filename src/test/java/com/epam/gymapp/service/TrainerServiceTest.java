@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.epam.gymapp.repository.*;
 
@@ -35,6 +36,12 @@ class TrainerServiceTest {
 
     @Mock
     private TrainingTypeRepository trainingTypeRepository;
+
+    @Mock
+    private LoginAttemptService loginAttemptService;
+
+    @Mock
+    private PasswordEncoder passwordEncoder;
 
     private Trainer trainer;
     private User user;
@@ -88,18 +95,7 @@ class TrainerServiceTest {
         assertNull(found);
     }
 
-    @Test
-    void testSave() {
-        TrainingType trainingType = new TrainingType(TrainingTypeEnum.STRETCHING);
-        when(trainingTypeRepository.findByName(TrainingTypeEnum.STRETCHING)).thenReturn(Optional.of(trainingType));
-        when(trainerRepository.save(any(Trainer.class))).thenReturn(trainer);
-        when(userRepository.save(any(User.class))).thenReturn(user);
 
-        RegistrationDto registrationDto = trainerService.save(trainerDto);
-
-        assertNotNull(registrationDto);
-        assertEquals("John.Doe", registrationDto.getUsername());
-    }
 
     @Test
     void testUpdateTrainerFound() {

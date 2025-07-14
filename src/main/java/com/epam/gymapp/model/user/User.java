@@ -169,6 +169,7 @@ public class User {
      * @throws IllegalArgumentException if the password is null or empty.
      */
     public void setPassword(String password) {
+        System.out.println("Setting password: " + password);
         if (password == null || password.trim().isEmpty()) {
             throw new IllegalArgumentException("Password is required.");
         }

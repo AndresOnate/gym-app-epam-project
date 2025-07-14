@@ -28,17 +28,15 @@ import com.epam.gymapp.repository.UserRepository;
 @Service
 public class UserService implements UserDetailsService{
 
-    @Autowired
     private LoginAttemptService loginAttemptService;
-
-
     private UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, LoginAttemptService loginAttemptService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.loginAttemptService = loginAttemptService;
     }
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
