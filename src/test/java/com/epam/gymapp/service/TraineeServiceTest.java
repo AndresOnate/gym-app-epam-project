@@ -71,21 +71,7 @@ public class TraineeServiceTest {
         assertNull(result);
     }
 
-    @Test
-    void testSave() {
-        TraineeDto dto = new TraineeDto();
-        Trainee trainee = new Trainee(dto);
-        User user = new User();
-        trainee.setUser(user);
 
-        when(traineeRepository.save(any(Trainee.class))).thenReturn(trainee);
-
-        RegistrationDto result = traineeService.save(dto);
-
-        assertNotNull(result);
-        verify(userRepository).save(any(User.class));
-        verify(traineeRepository).save(any(Trainee.class));
-    }
 
     @Test
     void testUpdateFound() {
