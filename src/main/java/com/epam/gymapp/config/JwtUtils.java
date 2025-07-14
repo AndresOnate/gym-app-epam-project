@@ -1,6 +1,9 @@
 package com.epam.gymapp.config;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -23,6 +26,20 @@ public class JwtUtils {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    public String generateToken(String subject, String transactionId) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("service", "main-microservice"); // Identifica el servicio que llama
+        claims.put("transactionId", transactionId); // Incluye el ID de la transacción para servicios downstream
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(subject) // Típicamente el nombre del servicio que llama
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(30))) // Token válido por 30 minutos
                 .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()), SignatureAlgorithm.HS256)
                 .compact();
     }
