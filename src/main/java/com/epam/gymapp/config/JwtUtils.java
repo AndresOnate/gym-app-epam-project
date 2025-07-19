@@ -32,12 +32,12 @@ public class JwtUtils {
 
     public String generateToken(String subject, String transactionId) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("service", "main-microservice"); // Identifica el servicio que llama
-        claims.put("transactionId", transactionId); // Incluye el ID de la transacción para servicios downstream
+        claims.put("service", "main-microservice"); 
+        claims.put("transactionId", transactionId); 
 
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(subject) // Típicamente el nombre del servicio que llama
+                .setSubject(subject) 
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(30))) // Token válido por 30 minutos
                 .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()), SignatureAlgorithm.HS256)
@@ -61,4 +61,21 @@ public class JwtUtils {
             return false;
         }
     }
+
+    public String generateServiceToken() {
+        return Jwts.builder()
+                .setSubject("gym-reservation-service")
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
+                .signWith(SignatureAlgorithm.HS256, jwtSecret)
+                .compact();
+    }
+
+    public String getSubjectFromJwt(String token) {
+        return Jwts.parser().setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+    }
+
 }
