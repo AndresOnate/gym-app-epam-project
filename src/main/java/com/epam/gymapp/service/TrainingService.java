@@ -117,7 +117,8 @@ public class TrainingService {
         apiRequest.setTrainingDate(localDate);
         apiRequest.setTrainingDuration(trainingDto.getTrainingDuration());
         apiRequest.setActionType(ActionType.ADD);
-        logger.info("Notificar al microservicio secundario: {}" , apiRequest.toString());
+        logger.info("Notifying the secondary microservice: {}", apiRequest.toString());
+
 
         trainerWorkloadClient.updateTrainerWorkload(apiRequest);
         
@@ -171,6 +172,8 @@ public class TrainingService {
             request.setTrainingDate(training.getTrainingDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             request.setTrainingDuration(training.getTrainingDuration());
             request.setActionType(ActionType.DELETE);
+
+            logger.info("Notifying the secondary microservice: {}", request.toString());
 
             trainerWorkloadClient.updateTrainerWorkload(request);
         });
