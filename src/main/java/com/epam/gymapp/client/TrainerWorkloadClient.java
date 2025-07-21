@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.epam.gymapp.dto.TrainerWorkloadRequest;
 
-@FeignClient("trainer-workload-service")
+@FeignClient(value = "trainer-workload-service", fallback = TrainerFallbackClient.class)
 public interface TrainerWorkloadClient {
 
     @PostMapping("/api/trainer-workload/update")
