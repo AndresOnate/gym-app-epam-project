@@ -5,8 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import com.epam.gymapp.client.TrainerWorkloadClient;
@@ -104,18 +106,21 @@ public class TrainingService {
         training.setTrainingDate(trainingDto.getTrainingDate());
         training.setTrainingDuration(trainingDto.getTrainingDuration());
         Training saved = trainingRepository.save(training);
+        LocalDate localDate = trainingDto.getTrainingDate().toInstant()
+                                .atZone(ZoneId.systemDefault())
+                                .toLocalDate();
+        TrainerWorkloadRequest apiRequest = new TrainerWorkloadRequest();
+        apiRequest.setUsername(trainer.getUser().getUsername());
+        apiRequest.setFirstName(trainer.getUser().getFirstName());
+        apiRequest.setLastName(trainer.getUser().getLastName());
+        apiRequest.setIsActive(trainer.getUser().getIsActive());
+        apiRequest.setTrainingDate(localDate);
+        apiRequest.setTrainingDuration(trainingDto.getTrainingDuration());
+        apiRequest.setActionType(ActionType.ADD);
+        logger.info("Notificar al microservicio secundario: {}" , apiRequest.toString());
 
-        // Notificar al microservicio secundario
-        TrainerWorkloadRequest request = new TrainerWorkloadRequest();
-        request.setUsername(trainer.getUser().getUsername());
-        request.setFirstName(trainer.getUser().getFirstName());
-        request.setLastName(trainer.getUser().getLastName());
-        request.setIsActive(trainer.getUser().getIsActive());
-        request.setTrainingDate(trainingDto.getTrainingDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        request.setTrainingDuration(trainingDto.getTrainingDuration());
-        request.setActionType(ActionType.ADD);
-
-        trainerWorkloadClient.updateTrainerWorkload(request);
+        trainerWorkloadClient.updateTrainerWorkload(apiRequest);
+        
 
         return saved;
     }

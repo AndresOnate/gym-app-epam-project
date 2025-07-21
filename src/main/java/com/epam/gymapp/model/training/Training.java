@@ -1,6 +1,8 @@
 package com.epam.gymapp.model.training;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import com.epam.gymapp.dto.TrainingDto;
 import com.epam.gymapp.model.trainee.Trainee;
