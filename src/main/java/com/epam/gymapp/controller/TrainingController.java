@@ -2,6 +2,8 @@ package com.epam.gymapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,5 +33,11 @@ public class TrainingController {
         addTrainingCounter.increment();
         trainingService.save(trainingRequest);
         return ResponseEntity.status(201).build();
+    }
+
+   @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTraining(@PathVariable Long id) {
+        trainingService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

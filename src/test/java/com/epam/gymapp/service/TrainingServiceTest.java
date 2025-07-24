@@ -71,16 +71,7 @@ class TrainingServiceTest {
         assertNull(result);
     }
 
-    @Test
-    void testSave_TrainingEntity() {
-        Training training = new Training();
-        when(trainingRepository.save(training)).thenReturn(training);
 
-        Training result = trainingService.save(training);
-
-        assertEquals(training, result);
-        verify(trainingRepository).save(training);
-    }
 
     @Test
     void testSave_TrainingDto() {

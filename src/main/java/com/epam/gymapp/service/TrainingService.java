@@ -5,9 +5,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
+import com.epam.gymapp.client.TrainerWorkloadClient;
+import com.epam.gymapp.dto.ActionType;
+import com.epam.gymapp.dto.TrainerWorkloadRequest;
 import com.epam.gymapp.dto.TrainingDto;
 import com.epam.gymapp.model.trainee.Trainee;
 import com.epam.gymapp.model.trainer.Trainer;
@@ -33,17 +39,19 @@ public class TrainingService {
     private static final Logger logger = LoggerFactory.getLogger(TrainingService.class);
 
     @Autowired
-    private TrainingRepository trainingRepository; // Field-Based Injection
-    private TrainerRepository trainerRepository; // Field-Based Injection
-    private TraineeRepository traineeRepository; // Field-Based Injection
-    private TrainingTypeRepository trainingTypeRepository; // Field-Based Injection
+    private TrainingRepository trainingRepository; 
+    private TrainerRepository trainerRepository; 
+    private TraineeRepository traineeRepository;
+    private TrainingTypeRepository trainingTypeRepository; 
+    private TrainerWorkloadClient trainerWorkloadClient;
 
     public TrainingService(TrainingRepository trainingRepository, TrainerRepository trainerRepository,
-            TraineeRepository traineeRepository, TrainingTypeRepository trainingTypeRepository) {
+            TraineeRepository traineeRepository, TrainingTypeRepository trainingTypeRepository, TrainerWorkloadClient trainerWorkloadClient) {
         this.trainingTypeRepository = trainingTypeRepository;
         this.trainingRepository = trainingRepository;
         this.trainerRepository = trainerRepository;
         this.traineeRepository = traineeRepository;
+        this.trainerWorkloadClient = trainerWorkloadClient;
     }
 
     /**
@@ -97,7 +105,25 @@ public class TrainingService {
         training.setTrainingName(trainingDto.getTrainingName());
         training.setTrainingDate(trainingDto.getTrainingDate());
         training.setTrainingDuration(trainingDto.getTrainingDuration());
-        return trainingRepository.save(training);
+        Training saved = trainingRepository.save(training);
+        LocalDate localDate = trainingDto.getTrainingDate().toInstant()
+                                .atZone(ZoneId.systemDefault())
+                                .toLocalDate();
+        TrainerWorkloadRequest apiRequest = new TrainerWorkloadRequest();
+        apiRequest.setUsername(trainer.getUser().getUsername());
+        apiRequest.setFirstName(trainer.getUser().getFirstName());
+        apiRequest.setLastName(trainer.getUser().getLastName());
+        apiRequest.setIsActive(trainer.getUser().getIsActive());
+        apiRequest.setTrainingDate(localDate);
+        apiRequest.setTrainingDuration(trainingDto.getTrainingDuration());
+        apiRequest.setActionType(ActionType.ADD);
+        logger.info("Notifying the secondary microservice: {}", apiRequest.toString());
+
+
+        trainerWorkloadClient.updateTrainerWorkload(apiRequest);
+        
+
+        return saved;
     }
 
     /**
@@ -132,12 +158,25 @@ public class TrainingService {
      * @param training the Training object to delete
      */
     public void delete(Long id) {
-        try {
-            logger.info("Deleting training: {}", id);
+        trainingRepository.findById(id).ifPresent(training -> {
+             logger.info("Deleting training: {}", id);
             trainingRepository.deleteById(id);
-        } catch (Exception e) {
-            logger.error("Error deleting training: {}", id, e);
-        }
+
+            Trainer trainer = training.getTrainer();
+
+            TrainerWorkloadRequest request = new TrainerWorkloadRequest();
+            request.setUsername(trainer.getUser().getUsername());
+            request.setFirstName(trainer.getUser().getFirstName());
+            request.setLastName(trainer.getUser().getLastName());
+            request.setIsActive(trainer.getUser().getIsActive());
+            request.setTrainingDate(training.getTrainingDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            request.setTrainingDuration(training.getTrainingDuration());
+            request.setActionType(ActionType.DELETE);
+
+            logger.info("Notifying the secondary microservice: {}", request.toString());
+
+            trainerWorkloadClient.updateTrainerWorkload(request);
+        });
     }
 
     /**
