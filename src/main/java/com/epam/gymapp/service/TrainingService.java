@@ -43,16 +43,14 @@ public class TrainingService {
     private TrainerRepository trainerRepository; 
     private TraineeRepository traineeRepository;
     private TrainingTypeRepository trainingTypeRepository; 
-    private TrainerWorkloadClient trainerWorkloadClient;
     private TrainingPublisher trainingPublisher;
 
     public TrainingService(TrainingRepository trainingRepository, TrainerRepository trainerRepository,
-            TraineeRepository traineeRepository, TrainingTypeRepository trainingTypeRepository, TrainerWorkloadClient trainerWorkloadClient, TrainingPublisher trainingPublisher) {
+            TraineeRepository traineeRepository, TrainingTypeRepository trainingTypeRepository, TrainingPublisher trainingPublisher) {
         this.trainingTypeRepository = trainingTypeRepository;
         this.trainingRepository = trainingRepository;
         this.trainerRepository = trainerRepository;
         this.traineeRepository = traineeRepository;
-        this.trainerWorkloadClient = trainerWorkloadClient;
         this.trainingPublisher = trainingPublisher;
     }
 
@@ -177,7 +175,7 @@ public class TrainingService {
 
             logger.info("Notifying the secondary microservice: {}", request.toString());
 
-            trainerWorkloadClient.updateTrainerWorkload(request);
+            trainingPublisher.sendTraining(request);
         });
     }
 

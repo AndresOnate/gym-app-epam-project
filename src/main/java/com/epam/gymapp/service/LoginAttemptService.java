@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class LoginAttemptService {
 
     private final int MAX_ATTEMPT = 3;
-    private final long BLOCK_TIME = 5 * 60 * 1000; // 5 minutos en milisegundos
+    private final long BLOCK_TIME = 5 * 60 * 1000; 
 
     private final Map<String, Integer> attemptsCache = new ConcurrentHashMap<>();
     private final Map<String, Long> blockedUsers = new ConcurrentHashMap<>();
@@ -33,7 +33,6 @@ public class LoginAttemptService {
         if (!blockedUsers.containsKey(username)) return false;
         long expiryTime = blockedUsers.get(username);
         if (System.currentTimeMillis() > expiryTime) {
-            // desbloquear automáticamente
             blockedUsers.remove(username);
             attemptsCache.remove(username);
             return false;
