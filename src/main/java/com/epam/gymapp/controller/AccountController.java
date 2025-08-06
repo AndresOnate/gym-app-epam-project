@@ -29,7 +29,7 @@ public class AccountController {
     @PutMapping("/password")
     public ResponseEntity<?> changePassword(@RequestBody PasswordChangeRequest request) {
         userService.changePassword(request.getUsername(), request.getOldPassword(), request.getNewPassword());
-        passwordChangeCounter.increment(); // Incrementa el contador cada vez que se cambia la contraseña
+        passwordChangeCounter.increment(); 
         return ResponseEntity.ok("Contraseña actualizada exitosamente");
     }
 }
