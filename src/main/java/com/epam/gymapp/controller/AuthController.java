@@ -37,7 +37,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody RegistrationDto registrationDto) {
-        loginCounter.increment(); // Incrementa el contador cada vez que se hace un login
+        loginCounter.increment(); 
         User userDetails = userService.authenticate(registrationDto.getUsername(), registrationDto.getPassword());
         String token = jwtUtils.generateJwtToken(userDetails);
         return ResponseEntity.ok(Map.of("token", token));
