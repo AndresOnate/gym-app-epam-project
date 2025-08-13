@@ -1,5 +1,7 @@
 package com.epam.gymapp.service;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,6 +35,9 @@ class TrainingServiceTest {
     private TraineeRepository traineeRepository;
     @Mock
     private TrainingTypeRepository trainingTypeRepository;
+
+    @Mock
+    private TrainingPublisher trainingPublisher;
 
     @InjectMocks
     private TrainingService trainingService;
@@ -92,6 +97,7 @@ class TrainingServiceTest {
         when(trainerRepository.findByUserUsername("trainer1")).thenReturn(Optional.of(trainer));
         when(traineeRepository.findByUserUsername("trainee1")).thenReturn(Optional.of(trainee));
         when(trainingRepository.save(any(Training.class))).thenAnswer(i -> i.getArguments()[0]);
+        doNothing().when(trainingPublisher).sendTraining(any());
 
         Training result = trainingService.save(dto);
 
@@ -128,10 +134,11 @@ class TrainingServiceTest {
 
     @Test
     void testDelete() {
+        when(trainingRepository.findById(1L)).thenReturn(Optional.of(new Training()));
         doNothing().when(trainingRepository).deleteById(1L);
 
         trainingService.delete(1L);
-
+        verify(trainingRepository).findById(1L);
         verify(trainingRepository).deleteById(1L);
     }
 

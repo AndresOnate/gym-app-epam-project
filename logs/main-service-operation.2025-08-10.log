@@ -1,0 +1,269 @@
+2025-08-10 21:04:10.503 [main] INFO  c.e.g.steps.CucumberConfiguration - Starting CucumberConfiguration using Java 17.0.8 with PID 39796 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-10 21:04:10.506 [main] INFO  c.e.g.steps.CucumberConfiguration - The following 1 profile is active: "local"
+2025-08-10 21:04:15.907 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 21:04:16.511 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 579 ms. Found 5 JPA repository interfaces.
+2025-08-10 21:04:17.246 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=67061a95-d0f5-3a6d-9481-327a44f8c71b
+2025-08-10 21:04:18.995 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 21:04:19.139 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-10 21:04:19.148 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 21:04:19.148 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-10 21:04:19.587 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-10 21:04:19.591 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 8414 ms
+2025-08-10 21:04:20.663 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 21:04:22.046 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@912a644
+2025-08-10 21:04:22.052 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 21:04:22.688 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 21:04:23.023 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-08-10 21:04:23.997 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-08-10 21:04:24.740 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2025-08-10 21:04:28.542 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-10 21:04:28.573 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 21:04:29.829 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 21:04:31.284 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 21:04:36.215 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-08-10 21:04:36.308 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-10 21:04:36.902 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-10 21:04:44.029 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-10 21:04:44.102 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-10 21:04:44.573 [main] INFO  c.e.g.steps.CucumberConfiguration - Started CucumberConfiguration in 35.911 seconds (process running for 45.142)
+2025-08-10 21:04:47.571 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-10 21:04:51.680 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-10 21:04:51.680 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-10 21:04:51.685 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-08-10 21:04:53.139 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-10 21:04:53.719 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-10 21:04:53.794 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 21:04:53.800 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 21:04:53.816 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 21:08:40.150 [main] INFO  c.e.g.steps.CucumberConfiguration - Starting CucumberConfiguration using Java 17.0.8 with PID 8156 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-10 21:08:40.154 [main] INFO  c.e.g.steps.CucumberConfiguration - The following 1 profile is active: "local"
+2025-08-10 21:08:44.205 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 21:08:44.692 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 467 ms. Found 5 JPA repository interfaces.
+2025-08-10 21:08:45.474 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=67061a95-d0f5-3a6d-9481-327a44f8c71b
+2025-08-10 21:08:47.211 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 21:08:47.242 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-10 21:08:47.246 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 21:08:47.248 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-10 21:08:47.468 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-10 21:08:47.471 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6633 ms
+2025-08-10 21:08:48.100 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 21:08:48.706 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1885905b
+2025-08-10 21:08:48.710 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 21:08:49.422 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 21:08:49.743 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-08-10 21:08:50.970 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-08-10 21:08:51.989 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2025-08-10 21:08:56.430 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-10 21:08:56.478 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 21:08:58.700 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 21:09:01.574 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 21:09:03.879 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-08-10 21:09:04.011 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-10 21:09:04.744 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-10 21:09:08.521 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-10 21:09:08.585 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-10 21:09:09.003 [main] INFO  c.e.g.steps.CucumberConfiguration - Started CucumberConfiguration in 30.67 seconds (process running for 35.201)
+2025-08-10 21:09:11.304 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-10 21:09:14.385 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-10 21:09:14.386 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-10 21:09:14.390 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-08-10 21:09:15.693 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-10 21:09:16.107 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-10 21:09:16.237 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 21:09:16.242 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 21:09:16.256 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 21:12:02.356 [main] INFO  c.epam.gymapp.GymappApplicationTests - Starting GymappApplicationTests using Java 21.0.2 with PID 39900 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-10 21:12:02.392 [main] INFO  c.epam.gymapp.GymappApplicationTests - The following 1 profile is active: "local"
+2025-08-10 21:12:09.051 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 21:12:09.786 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 684 ms. Found 5 JPA repository interfaces.
+2025-08-10 21:12:11.095 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=6c6e2fea-5120-3209-a7f2-2f6488d588b4
+2025-08-10 21:12:14.657 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 21:12:15.929 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@24f5e9e8
+2025-08-10 21:12:15.937 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 21:12:16.815 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 21:12:17.615 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-08-10 21:12:18.749 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-08-10 21:12:19.278 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2025-08-10 21:12:22.983 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-10 21:12:23.011 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 21:12:25.150 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 21:12:27.227 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 21:12:29.629 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-08-10 21:12:29.906 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-08-10 21:12:30.028 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-10 21:12:30.990 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-10 21:12:34.326 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-08-10 21:12:34.851 [main] INFO  c.epam.gymapp.GymappApplicationTests - Started GymappApplicationTests in 36.374 seconds (process running for 45.23)
+2025-08-10 21:12:39.571 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-10 21:12:40.933 [main] INFO  c.epam.gymapp.service.TraineeService - Deleting trainee with username: user
+2025-08-10 21:12:40.935 [main] INFO  c.epam.gymapp.service.TraineeService - Trainee with username user deleted successfully.
+2025-08-10 21:12:40.973 [main] INFO  c.epam.gymapp.service.TraineeService - Fetching trainee with ID: 1
+2025-08-10 21:12:40.989 [main] INFO  c.epam.gymapp.service.TraineeService - Searching for trainee with username: user
+2025-08-10 21:12:40.991 [main] WARN  c.epam.gymapp.service.TraineeService - Trainee with username 'user' not found.
+2025-08-10 21:12:41.057 [main] INFO  c.epam.gymapp.service.TraineeService - Updating trainers for trainee: user
+2025-08-10 21:12:41.077 [main] INFO  c.epam.gymapp.service.TraineeService - Trainee with ID 1 deleted successfully.
+2025-08-10 21:12:41.095 [main] INFO  c.epam.gymapp.service.TraineeService - Updating trainee with ID: 1
+2025-08-10 21:12:41.098 [main] INFO  c.epam.gymapp.service.TraineeService - Trainee with ID: 1 successfully updated
+2025-08-10 21:12:41.145 [main] INFO  c.epam.gymapp.service.TraineeService - Deleting trainee with username: user
+2025-08-10 21:12:41.165 [main] INFO  c.epam.gymapp.service.TraineeService - Fetching trainee with ID: 1
+2025-08-10 21:12:41.231 [main] INFO  c.epam.gymapp.service.TraineeService - Updating trainee with ID: 1
+2025-08-10 21:12:41.233 [main] ERROR c.epam.gymapp.service.TraineeService - Trainee with ID: 1 not found
+2025-08-10 21:12:41.244 [main] INFO  c.epam.gymapp.service.TraineeService - Fetching all trainees...
+2025-08-10 21:12:41.256 [main] INFO  c.epam.gymapp.service.TraineeService - Searching for trainee with username: user
+2025-08-10 21:12:41.258 [main] INFO  c.epam.gymapp.service.TraineeService - Trainee with username 'user' found.
+2025-08-10 21:12:41.298 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.service.TrainerServiceTest]: TrainerServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-10 21:12:41.531 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.service.TrainerServiceTest
+2025-08-10 21:12:42.038 [main] INFO  c.epam.gymapp.service.TrainerService - Fetching trainer with ID: 1
+2025-08-10 21:12:42.095 [main] INFO  c.epam.gymapp.service.TrainerService - Searching for trainer with username: trainer1
+2025-08-10 21:12:42.096 [main] WARN  c.epam.gymapp.service.TrainerService - Trainer with username 'trainer1' not found.
+2025-08-10 21:12:42.256 [main] INFO  c.epam.gymapp.service.TrainerService - Updating trainer with ID: 1
+2025-08-10 21:12:42.266 [main] INFO  c.epam.gymapp.service.TrainerService - Trainer with ID: 1 successfully updated
+2025-08-10 21:12:42.452 [main] INFO  c.epam.gymapp.service.TrainerService - Updating trainer with ID: 1
+2025-08-10 21:12:42.454 [main] ERROR c.epam.gymapp.service.TrainerService - Trainer with ID: 1 not found
+2025-08-10 21:12:43.147 [main] INFO  c.epam.gymapp.service.TrainerService - Fetching trainer with ID: 1
+2025-08-10 21:12:43.761 [main] INFO  c.epam.gymapp.service.TrainerService - Deleting trainer: 1
+2025-08-10 21:12:43.762 [main] INFO  c.epam.gymapp.service.TrainerService - Trainer successfully deleted: 1
+2025-08-10 21:12:43.826 [main] INFO  c.epam.gymapp.service.TrainerService - Fetching all trainers...
+2025-08-10 21:12:43.965 [main] INFO  c.epam.gymapp.service.TrainerService - Searching for trainer with username: trainer1
+2025-08-10 21:12:43.967 [main] INFO  c.epam.gymapp.service.TrainerService - Trainer with username 'trainer1' found.
+2025-08-10 21:12:44.123 [main] INFO  c.epam.gymapp.service.TrainerService - Fetching unassigned trainers for trainee: trainee1
+2025-08-10 21:12:44.589 [main] INFO  c.e.gymapp.service.TrainingService - Fetching training with ID: 1
+2025-08-10 21:12:44.597 [main] INFO  c.e.gymapp.service.TrainingService - Fetching training with ID: 1
+2025-08-10 21:12:44.606 [main] INFO  c.e.gymapp.service.TrainingService - Fetching trainings for trainee: trainee1, from: 1969-12-31, to: 1969-12-31, trainer: , type: 
+2025-08-10 21:12:44.617 [main] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@d431f83
+2025-08-10 21:12:44.708 [main] INFO  c.e.gymapp.service.TrainingService - Updating training with ID: 1
+2025-08-10 21:12:44.710 [main] INFO  c.e.gymapp.service.TrainingService - Training with ID: 1 successfully updated
+2025-08-10 21:12:44.719 [main] INFO  c.e.gymapp.service.TrainingService - Updating training with ID: 1
+2025-08-10 21:12:44.720 [main] ERROR c.e.gymapp.service.TrainingService - Training with ID: 1 not found
+2025-08-10 21:12:44.801 [main] INFO  c.e.gymapp.service.TrainingService - Fetching all trainings
+2025-08-10 21:12:44.809 [main] INFO  c.e.gymapp.service.TrainingService - Fetching trainings for trainer: trainer1, from: 1969-12-31, to: 1969-12-31, trainee: 
+2025-08-10 21:12:44.872 [main] INFO  com.epam.gymapp.service.UserService - Attempting to change password for user: john_doe
+2025-08-10 21:12:44.898 [main] INFO  com.epam.gymapp.service.UserService - Changing status for user: john_doe to INACTIVE
+2025-08-10 21:12:44.899 [main] INFO  com.epam.gymapp.service.UserService - User john_doe is now INACTIVE
+2025-08-10 21:12:44.909 [main] INFO  com.epam.gymapp.service.UserService - Attempting to save a new user with username: john.doe
+2025-08-10 21:12:44.910 [main] ERROR com.epam.gymapp.service.UserService - Username 'john.doe' already exists in the database.
+2025-08-10 21:12:44.917 [main] INFO  com.epam.gymapp.service.UserService - Changing status for user: john_doe to ACTIVE
+2025-08-10 21:12:44.931 [main] INFO  com.epam.gymapp.service.UserService - Changing status for user: john_doe to ACTIVE
+2025-08-10 21:12:44.932 [main] INFO  com.epam.gymapp.service.UserService - User john_doe is now ACTIVE
+2025-08-10 21:12:44.942 [main] INFO  com.epam.gymapp.service.UserService - Attempting to authenticate user with username: john_doe
+2025-08-10 21:12:44.948 [main] ERROR com.epam.gymapp.service.UserService - Invalid password provided for user 'john_doe'.
+2025-08-10 21:12:45.610 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 21:12:45.617 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 21:12:45.661 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 21:34:46.197 [main] INFO  c.epam.gymapp.GymappApplicationTests - Starting GymappApplicationTests using Java 21.0.2 with PID 10732 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-10 21:34:46.231 [main] INFO  c.epam.gymapp.GymappApplicationTests - The following 1 profile is active: "local"
+2025-08-10 21:34:49.938 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 21:34:50.429 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 465 ms. Found 5 JPA repository interfaces.
+2025-08-10 21:34:51.117 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=6c6e2fea-5120-3209-a7f2-2f6488d588b4
+2025-08-10 21:34:52.087 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 21:34:52.645 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@609ad016
+2025-08-10 21:34:52.647 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 21:34:52.907 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 21:34:53.049 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-08-10 21:34:53.451 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-08-10 21:34:53.746 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2025-08-10 21:34:55.700 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-10 21:34:55.718 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 21:34:56.904 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 21:34:58.019 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 21:35:00.008 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-08-10 21:35:00.235 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-08-10 21:35:00.365 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-10 21:35:01.131 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-10 21:35:04.114 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2025-08-10 21:35:04.993 [main] INFO  c.epam.gymapp.GymappApplicationTests - Started GymappApplicationTests in 21.308 seconds (process running for 25.919)
+2025-08-10 21:35:09.878 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-10 21:35:12.763 [main] INFO  c.epam.gymapp.service.TraineeService - Deleting trainee with username: user
+2025-08-10 21:35:12.769 [main] INFO  c.epam.gymapp.service.TraineeService - Trainee with username user deleted successfully.
+2025-08-10 21:35:12.852 [main] INFO  c.epam.gymapp.service.TraineeService - Fetching trainee with ID: 1
+2025-08-10 21:35:12.898 [main] INFO  c.epam.gymapp.service.TraineeService - Searching for trainee with username: user
+2025-08-10 21:35:12.899 [main] WARN  c.epam.gymapp.service.TraineeService - Trainee with username 'user' not found.
+2025-08-10 21:35:13.001 [main] INFO  c.epam.gymapp.service.TraineeService - Updating trainers for trainee: user
+2025-08-10 21:35:13.045 [main] INFO  c.epam.gymapp.service.TraineeService - Trainee with ID 1 deleted successfully.
+2025-08-10 21:35:13.074 [main] INFO  c.epam.gymapp.service.TraineeService - Updating trainee with ID: 1
+2025-08-10 21:35:13.090 [main] INFO  c.epam.gymapp.service.TraineeService - Trainee with ID: 1 successfully updated
+2025-08-10 21:35:13.318 [main] INFO  c.epam.gymapp.service.TraineeService - Deleting trainee with username: user
+2025-08-10 21:35:13.363 [main] INFO  c.epam.gymapp.service.TraineeService - Fetching trainee with ID: 1
+2025-08-10 21:35:13.469 [main] INFO  c.epam.gymapp.service.TraineeService - Updating trainee with ID: 1
+2025-08-10 21:35:13.469 [main] ERROR c.epam.gymapp.service.TraineeService - Trainee with ID: 1 not found
+2025-08-10 21:35:13.485 [main] INFO  c.epam.gymapp.service.TraineeService - Fetching all trainees...
+2025-08-10 21:35:13.541 [main] INFO  c.epam.gymapp.service.TraineeService - Searching for trainee with username: user
+2025-08-10 21:35:13.547 [main] INFO  c.epam.gymapp.service.TraineeService - Trainee with username 'user' found.
+2025-08-10 21:35:13.594 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.service.TrainerServiceTest]: TrainerServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-10 21:35:13.819 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.service.TrainerServiceTest
+2025-08-10 21:35:15.127 [main] INFO  c.epam.gymapp.service.TrainerService - Fetching trainer with ID: 1
+2025-08-10 21:35:15.284 [main] INFO  c.epam.gymapp.service.TrainerService - Searching for trainer with username: trainer1
+2025-08-10 21:35:15.290 [main] WARN  c.epam.gymapp.service.TrainerService - Trainer with username 'trainer1' not found.
+2025-08-10 21:35:15.782 [main] INFO  c.epam.gymapp.service.TrainerService - Updating trainer with ID: 1
+2025-08-10 21:35:15.785 [main] INFO  c.epam.gymapp.service.TrainerService - Trainer with ID: 1 successfully updated
+2025-08-10 21:35:15.821 [main] INFO  c.epam.gymapp.service.TrainerService - Updating trainer with ID: 1
+2025-08-10 21:35:15.822 [main] ERROR c.epam.gymapp.service.TrainerService - Trainer with ID: 1 not found
+2025-08-10 21:35:15.919 [main] INFO  c.epam.gymapp.service.TrainerService - Fetching trainer with ID: 1
+2025-08-10 21:35:16.153 [main] INFO  c.epam.gymapp.service.TrainerService - Deleting trainer: 1
+2025-08-10 21:35:16.154 [main] INFO  c.epam.gymapp.service.TrainerService - Trainer successfully deleted: 1
+2025-08-10 21:35:16.223 [main] INFO  c.epam.gymapp.service.TrainerService - Fetching all trainers...
+2025-08-10 21:35:16.301 [main] INFO  c.epam.gymapp.service.TrainerService - Searching for trainer with username: trainer1
+2025-08-10 21:35:16.306 [main] INFO  c.epam.gymapp.service.TrainerService - Trainer with username 'trainer1' found.
+2025-08-10 21:35:16.384 [main] INFO  c.epam.gymapp.service.TrainerService - Fetching unassigned trainers for trainee: trainee1
+2025-08-10 21:35:17.384 [main] INFO  c.e.gymapp.service.TrainingService - Fetching training with ID: 1
+2025-08-10 21:35:17.433 [main] INFO  c.e.gymapp.service.TrainingService - Fetching training with ID: 1
+2025-08-10 21:35:17.462 [main] INFO  c.e.gymapp.service.TrainingService - Fetching trainings for trainee: trainee1, from: 1969-12-31, to: 1969-12-31, trainer: , type: 
+2025-08-10 21:35:17.530 [main] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@798cf0a0
+2025-08-10 21:35:17.589 [main] INFO  c.e.gymapp.service.TrainingService - Notifying the secondary microservice: TrainerWorkloadRequest{username='null', firstName='null', lastName='null', isActive=false, trainingDate=null, trainingDuration=60, actionType=ADD}
+2025-08-10 21:35:17.602 [main] INFO  c.e.gymapp.service.TrainingService - Updating training with ID: 1
+2025-08-10 21:35:17.605 [main] INFO  c.e.gymapp.service.TrainingService - Training with ID: 1 successfully updated
+2025-08-10 21:35:17.643 [main] INFO  c.e.gymapp.service.TrainingService - Updating training with ID: 1
+2025-08-10 21:35:17.651 [main] ERROR c.e.gymapp.service.TrainingService - Training with ID: 1 not found
+2025-08-10 21:35:17.686 [main] INFO  c.e.gymapp.service.TrainingService - Deleting training: 1
+2025-08-10 21:35:17.700 [main] INFO  c.e.gymapp.service.TrainingService - Fetching all trainings
+2025-08-10 21:35:17.716 [main] INFO  c.e.gymapp.service.TrainingService - Fetching trainings for trainer: trainer1, from: 1969-12-31, to: 1969-12-31, trainee: 
+2025-08-10 21:35:17.779 [main] INFO  com.epam.gymapp.service.UserService - Attempting to change password for user: john_doe
+2025-08-10 21:35:17.803 [main] INFO  com.epam.gymapp.service.UserService - Changing status for user: john_doe to INACTIVE
+2025-08-10 21:35:17.804 [main] INFO  com.epam.gymapp.service.UserService - User john_doe is now INACTIVE
+2025-08-10 21:35:17.821 [main] INFO  com.epam.gymapp.service.UserService - Attempting to save a new user with username: john.doe
+2025-08-10 21:35:17.830 [main] ERROR com.epam.gymapp.service.UserService - Username 'john.doe' already exists in the database.
+2025-08-10 21:35:17.850 [main] INFO  com.epam.gymapp.service.UserService - Changing status for user: john_doe to ACTIVE
+2025-08-10 21:35:17.862 [main] INFO  com.epam.gymapp.service.UserService - Changing status for user: john_doe to ACTIVE
+2025-08-10 21:35:17.865 [main] INFO  com.epam.gymapp.service.UserService - User john_doe is now ACTIVE
+2025-08-10 21:35:17.878 [main] INFO  com.epam.gymapp.service.UserService - Attempting to authenticate user with username: john_doe
+2025-08-10 21:35:17.881 [main] ERROR com.epam.gymapp.service.UserService - Invalid password provided for user 'john_doe'.
+2025-08-10 21:35:18.244 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 21:35:18.250 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 21:35:18.280 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-10 21:35:47.252 [main] INFO  c.e.g.steps.CucumberConfiguration - Starting CucumberConfiguration using Java 17.0.8 with PID 36104 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-10 21:35:47.255 [main] INFO  c.e.g.steps.CucumberConfiguration - The following 1 profile is active: "local"
+2025-08-10 21:35:50.993 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-10 21:35:51.434 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 417 ms. Found 5 JPA repository interfaces.
+2025-08-10 21:35:52.248 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=67061a95-d0f5-3a6d-9481-327a44f8c71b
+2025-08-10 21:35:55.039 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-10 21:35:55.086 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-10 21:35:55.092 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-10 21:35:55.093 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-10 21:35:55.345 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-10 21:35:55.348 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 7601 ms
+2025-08-10 21:35:56.625 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-10 21:35:57.360 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@53f94afe
+2025-08-10 21:35:57.366 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-10 21:35:57.851 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-10 21:35:58.084 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-08-10 21:35:58.527 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-08-10 21:35:58.957 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2025-08-10 21:36:01.683 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-10 21:36:01.706 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 21:36:03.081 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-10 21:36:04.651 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-10 21:36:07.150 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-08-10 21:36:07.297 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-10 21:36:07.995 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-10 21:36:10.765 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-10 21:36:10.823 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-10 21:36:11.322 [main] INFO  c.e.g.steps.CucumberConfiguration - Started CucumberConfiguration in 25.359 seconds (process running for 28.158)
+2025-08-10 21:36:12.749 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-10 21:36:15.499 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-10 21:36:15.499 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-10 21:36:15.503 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-08-10 21:36:16.837 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-10 21:36:17.301 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-10 21:36:17.375 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-10 21:36:17.381 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-10 21:36:17.398 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
