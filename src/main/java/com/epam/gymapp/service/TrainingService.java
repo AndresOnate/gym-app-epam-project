@@ -106,9 +106,12 @@ public class TrainingService {
         training.setTrainingDate(trainingDto.getTrainingDate());
         training.setTrainingDuration(trainingDto.getTrainingDuration());
         Training saved = trainingRepository.save(training);
-        LocalDate localDate = trainingDto.getTrainingDate().toInstant()
-                                .atZone(ZoneId.systemDefault())
-                                .toLocalDate();
+
+        LocalDate localDate = null;
+        if (trainingDto.getTrainingDate() != null) {
+            localDate = trainingDto.getTrainingDate().toInstant()
+                    .atZone(ZoneId.systemDefault()).toLocalDate();
+        }
         TrainerWorkloadRequest apiRequest = new TrainerWorkloadRequest();
         apiRequest.setUsername(trainer.getUser().getUsername());
         apiRequest.setFirstName(trainer.getUser().getFirstName());
@@ -161,22 +164,27 @@ public class TrainingService {
         trainingRepository.findById(id).ifPresent(training -> {
              logger.info("Deleting training: {}", id);
             trainingRepository.deleteById(id);
-
-            Trainer trainer = training.getTrainer();
-
-            TrainerWorkloadRequest request = new TrainerWorkloadRequest();
-            request.setUsername(trainer.getUser().getUsername());
-            request.setFirstName(trainer.getUser().getFirstName());
-            request.setLastName(trainer.getUser().getLastName());
-            request.setIsActive(trainer.getUser().getIsActive());
-            request.setTrainingDate(training.getTrainingDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            request.setTrainingDuration(training.getTrainingDuration());
-            request.setActionType(ActionType.DELETE);
-
-            logger.info("Notifying the secondary microservice: {}", request.toString());
-
-            trainingPublisher.sendTraining(request);
+            if (training.getTrainer() != null) {
+                sendTrainingUpdateToTrainer(training, ActionType.DELETE);
+            }
         });
+    }
+
+    private void sendTrainingUpdateToTrainer(Training training, ActionType actionType) {
+
+        TrainerWorkloadRequest request = new TrainerWorkloadRequest();
+        request.setUsername(training.getTrainer().getUser().getUsername());
+        request.setFirstName(training.getTrainer().getUser().getFirstName());
+        request.setLastName(training.getTrainer().getUser().getLastName());
+        request.setIsActive(training.getTrainer().getUser().getIsActive());
+        request.setTrainingDate(training.getTrainingDate().toInstant()
+                .atZone(ZoneId.systemDefault()).toLocalDate());
+        request.setTrainingDuration(training.getTrainingDuration());
+        request.setActionType(actionType);
+        
+        logger.info("Notifying the secondary microservice: {}", request.toString());
+
+        trainingPublisher.sendTraining(request);
     }
 
     /**
