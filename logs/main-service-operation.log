@@ -1601,3 +1601,312 @@ org.springframework.security.core.userdetails.UsernameNotFoundException: User no
 2025-08-13 19:11:35.429 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-08-13 19:11:35.434 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-08-13 19:11:35.442 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-13 19:16:50.158 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Starting TrainingApiSteps using Java 17.0.8 with PID 6628 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-13 19:16:50.162 [main] INFO  c.e.g.i.steps.TrainingApiSteps - The following 1 profile is active: "test"
+2025-08-13 19:16:53.963 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-13 19:16:54.470 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 482 ms. Found 5 JPA repository interfaces.
+2025-08-13 19:16:55.139 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3682e6e7-d507-33c2-b9d5-34dcf83e6ef8
+2025-08-13 19:16:56.908 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 0 (http)
+2025-08-13 19:16:56.954 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-1"]
+2025-08-13 19:16:56.960 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-13 19:16:56.960 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-13 19:16:57.168 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-13 19:16:57.172 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6391 ms
+2025-08-13 19:16:57.860 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-13 19:16:58.352 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-08-13 19:16:58.357 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-13 19:16:58.788 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-13 19:16:58.945 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-08-13 19:16:59.394 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-08-13 19:16:59.748 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2025-08-13 19:17:02.732 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-13 19:17:02.751 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:17:04.389 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-13 19:17:05.773 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-13 19:17:08.107 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 25 endpoints beneath base path '/actuator'
+2025-08-13 19:17:08.302 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-13 19:17:08.997 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-13 19:17:11.708 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-1"]
+2025-08-13 19:17:11.765 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 56386 (http) with context path '/'
+2025-08-13 19:17:12.703 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Started TrainingApiSteps in 24.208 seconds (process running for 30.021)
+2025-08-13 19:17:14.206 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-13 19:17:14.992 [http-nio-auto-1-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-13 19:17:14.993 [http-nio-auto-1-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-13 19:17:14.999 [http-nio-auto-1-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2025-08-13 19:17:15.281 [http-nio-auto-1-exec-1] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@6af404f5
+2025-08-13 19:17:15.625 [http-nio-auto-1-exec-1] INFO  c.e.gymapp.service.TrainingService - Notifying the secondary microservice: TrainerWorkloadRequest{username='Mike.Trainer', firstName='Mike', lastName='Trainer', isActive=true, trainingDate=2023-10-01, trainingDuration=60, actionType=ADD}
+2025-08-13 19:17:15.760 [http-nio-auto-1-exec-1] INFO  listenerLogger - Sent workload update for trainer: Mike.Trainer
+2025-08-13 19:17:16.882 [main] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-13 19:17:16.888 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-auto-1-56386"]
+2025-08-13 19:17:17.319 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-13 19:17:17.320 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-auto-1"]
+2025-08-13 19:17:17.393 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:17:17.398 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-13 19:17:17.420 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-13 19:17:17.444 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:17:17.449 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:17:17.456 [main] INFO  o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2025-08-13 19:17:17.777 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Starting TrainingApiSteps using Java 17.0.8 with PID 6628 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-13 19:17:17.778 [main] INFO  c.e.g.i.steps.TrainingApiSteps - The following 1 profile is active: "test"
+2025-08-13 19:17:19.273 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-13 19:17:19.326 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 45 ms. Found 5 JPA repository interfaces.
+2025-08-13 19:17:19.499 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3682e6e7-d507-33c2-b9d5-34dcf83e6ef8
+2025-08-13 19:17:19.891 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 0 (http)
+2025-08-13 19:17:19.893 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-2"]
+2025-08-13 19:17:19.894 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-13 19:17:19.896 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-13 19:17:19.980 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-13 19:17:19.980 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2194 ms
+2025-08-13 19:17:20.480 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2025-08-13 19:17:20.484 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:testdb user=SA
+2025-08-13 19:17:20.484 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2025-08-13 19:17:20.582 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-13 19:17:20.607 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2025-08-13 19:17:20.742 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-13 19:17:20.742 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:17:21.503 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-13 19:17:22.735 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 25 endpoints beneath base path '/actuator'
+2025-08-13 19:17:22.791 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-13 19:17:23.053 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-13 19:17:24.255 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-2"]
+2025-08-13 19:17:24.261 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 56398 (http) with context path '/'
+2025-08-13 19:17:25.011 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Started TrainingApiSteps in 7.556 seconds (process running for 42.329)
+2025-08-13 19:17:25.101 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-13 19:17:25.215 [http-nio-auto-2-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-13 19:17:25.216 [http-nio-auto-2-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-13 19:17:25.223 [http-nio-auto-2-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2025-08-13 19:17:25.250 [http-nio-auto-2-exec-1] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@52762eff
+2025-08-13 19:17:28.021 [main] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-13 19:17:28.022 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-auto-2-56398"]
+2025-08-13 19:17:28.490 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-13 19:17:28.491 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-auto-2"]
+2025-08-13 19:17:28.497 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:17:28.500 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2025-08-13 19:17:28.501 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2025-08-13 19:17:28.509 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:17:28.516 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:17:28.522 [main] INFO  o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2025-08-13 19:17:28.797 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Starting TrainingApiSteps using Java 17.0.8 with PID 6628 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-13 19:17:28.798 [main] INFO  c.e.g.i.steps.TrainingApiSteps - The following 1 profile is active: "test"
+2025-08-13 19:17:29.635 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-13 19:17:29.682 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 5 JPA repository interfaces.
+2025-08-13 19:17:29.832 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3682e6e7-d507-33c2-b9d5-34dcf83e6ef8
+2025-08-13 19:17:30.147 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 0 (http)
+2025-08-13 19:17:30.149 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-3"]
+2025-08-13 19:17:30.151 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-13 19:17:30.152 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-13 19:17:30.237 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-13 19:17:30.238 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1437 ms
+2025-08-13 19:17:30.723 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+2025-08-13 19:17:30.727 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Added connection conn20: url=jdbc:h2:mem:testdb user=SA
+2025-08-13 19:17:30.728 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+2025-08-13 19:17:30.945 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-13 19:17:30.992 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2025-08-13 19:17:31.199 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-13 19:17:31.200 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:17:31.977 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-13 19:17:33.160 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 25 endpoints beneath base path '/actuator'
+2025-08-13 19:17:33.299 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-13 19:17:33.619 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-13 19:17:35.337 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-3"]
+2025-08-13 19:17:35.351 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 56411 (http) with context path '/'
+2025-08-13 19:17:35.921 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Started TrainingApiSteps in 7.399 seconds (process running for 53.239)
+2025-08-13 19:17:35.968 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-13 19:17:36.014 [http-nio-auto-3-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-13 19:17:36.015 [http-nio-auto-3-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-13 19:17:36.017 [http-nio-auto-3-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-08-13 19:17:36.033 [http-nio-auto-3-exec-2] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@7b00c8de
+2025-08-13 19:17:38.923 [main] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-13 19:17:38.926 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-auto-3-56411"]
+2025-08-13 19:17:39.375 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-13 19:17:39.376 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-auto-3"]
+2025-08-13 19:17:39.382 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:17:39.383 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
+2025-08-13 19:17:39.385 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.
+2025-08-13 19:17:39.392 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:17:39.395 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:17:39.400 [main] INFO  o.s.b.d.r.RestartApplicationListener - Restart disabled due to context in which it is running
+2025-08-13 19:17:39.728 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Starting TrainingApiSteps using Java 17.0.8 with PID 6628 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-13 19:17:39.730 [main] INFO  c.e.g.i.steps.TrainingApiSteps - The following 1 profile is active: "test"
+2025-08-13 19:17:40.931 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-13 19:17:40.975 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 5 JPA repository interfaces.
+2025-08-13 19:17:41.115 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3682e6e7-d507-33c2-b9d5-34dcf83e6ef8
+2025-08-13 19:17:41.402 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 0 (http)
+2025-08-13 19:17:41.403 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-4"]
+2025-08-13 19:17:41.404 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-13 19:17:41.405 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-13 19:17:41.484 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-13 19:17:41.485 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1749 ms
+2025-08-13 19:17:41.831 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Starting...
+2025-08-13 19:17:41.836 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-4 - Added connection conn30: url=jdbc:h2:mem:testdb user=SA
+2025-08-13 19:17:41.837 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Start completed.
+2025-08-13 19:17:41.998 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-13 19:17:42.054 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2025-08-13 19:17:42.256 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-13 19:17:42.256 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:17:43.191 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-13 19:17:44.596 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 25 endpoints beneath base path '/actuator'
+2025-08-13 19:17:44.681 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-13 19:17:44.999 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-13 19:17:46.132 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-4"]
+2025-08-13 19:17:46.137 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 56422 (http) with context path '/'
+2025-08-13 19:17:46.627 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Started TrainingApiSteps in 7.226 seconds (process running for 63.944)
+2025-08-13 19:17:46.682 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-13 19:17:46.738 [http-nio-auto-4-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-13 19:17:46.739 [http-nio-auto-4-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-13 19:17:46.742 [http-nio-auto-4-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-08-13 19:17:46.757 [http-nio-auto-4-exec-1] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@3ffa88d5
+2025-08-13 19:17:49.651 [main] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-13 19:17:49.653 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-auto-4-56422"]
+2025-08-13 19:17:50.057 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-13 19:17:50.058 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-auto-4"]
+2025-08-13 19:17:50.064 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:17:50.065 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown initiated...
+2025-08-13 19:17:50.068 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown completed.
+2025-08-13 19:19:30.142 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Starting TrainingApiSteps using Java 17.0.8 with PID 21980 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-13 19:19:30.145 [main] INFO  c.e.g.i.steps.TrainingApiSteps - The following 1 profile is active: "test"
+2025-08-13 19:19:33.676 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-13 19:19:34.189 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 485 ms. Found 5 JPA repository interfaces.
+2025-08-13 19:19:34.941 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3682e6e7-d507-33c2-b9d5-34dcf83e6ef8
+2025-08-13 19:19:36.795 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 0 (http)
+2025-08-13 19:19:36.830 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-1"]
+2025-08-13 19:19:36.927 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-13 19:19:36.927 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-13 19:19:37.102 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-13 19:19:37.104 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6452 ms
+2025-08-13 19:19:37.844 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-13 19:19:38.286 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-08-13 19:19:38.290 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-13 19:19:38.613 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-13 19:19:38.748 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-08-13 19:19:39.103 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-08-13 19:19:39.376 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2025-08-13 19:19:40.870 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-13 19:19:40.887 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:19:42.487 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-13 19:19:43.617 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-13 19:19:45.824 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 25 endpoints beneath base path '/actuator'
+2025-08-13 19:19:46.004 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-13 19:19:46.709 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-13 19:19:48.768 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-1"]
+2025-08-13 19:19:48.827 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 56514 (http) with context path '/'
+2025-08-13 19:19:49.560 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Started TrainingApiSteps in 20.687 seconds (process running for 23.971)
+2025-08-13 19:19:50.891 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-13 19:19:51.724 [http-nio-auto-1-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-13 19:19:51.725 [http-nio-auto-1-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-13 19:19:51.729 [http-nio-auto-1-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-08-13 19:19:51.952 [http-nio-auto-1-exec-1] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@61e7b621
+2025-08-13 19:19:52.239 [http-nio-auto-1-exec-1] INFO  c.e.gymapp.service.TrainingService - Notifying the secondary microservice: TrainerWorkloadRequest{username='Mike.Trainer', firstName='Mike', lastName='Trainer', isActive=true, trainingDate=2023-10-01, trainingDuration=60, actionType=ADD}
+2025-08-13 19:19:52.325 [http-nio-auto-1-exec-1] INFO  listenerLogger - Sent workload update for trainer: Mike.Trainer
+2025-08-13 19:19:52.391 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:19:52.394 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:19:52.454 [http-nio-auto-1-exec-2] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@35688f8c
+2025-08-13 19:19:54.513 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:19:54.517 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:19:54.573 [http-nio-auto-1-exec-3] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@2cc49c38
+2025-08-13 19:19:56.604 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:19:56.608 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:19:56.674 [http-nio-auto-1-exec-4] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@36b0387d
+2025-08-13 19:19:59.465 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-13 19:20:00.202 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-13 19:20:00.261 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:20:00.267 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-13 19:20:00.273 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-13 19:22:06.027 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Starting TrainingApiSteps using Java 17.0.8 with PID 6912 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-13 19:22:06.031 [main] INFO  c.e.g.i.steps.TrainingApiSteps - The following 1 profile is active: "test"
+2025-08-13 19:22:11.748 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-13 19:22:12.181 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 407 ms. Found 5 JPA repository interfaces.
+2025-08-13 19:22:12.880 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3682e6e7-d507-33c2-b9d5-34dcf83e6ef8
+2025-08-13 19:22:15.388 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 0 (http)
+2025-08-13 19:22:15.417 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-1"]
+2025-08-13 19:22:15.432 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-13 19:22:15.433 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-13 19:22:15.603 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-13 19:22:15.606 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 8416 ms
+2025-08-13 19:22:16.545 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-13 19:22:17.097 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-08-13 19:22:17.103 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-13 19:22:17.501 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-13 19:22:17.640 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-08-13 19:22:18.008 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-08-13 19:22:18.356 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2025-08-13 19:22:19.942 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-13 19:22:19.960 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:22:21.769 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-13 19:22:23.087 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-13 19:22:26.346 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 25 endpoints beneath base path '/actuator'
+2025-08-13 19:22:26.580 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-13 19:22:27.481 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-13 19:22:30.005 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-1"]
+2025-08-13 19:22:30.046 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 56634 (http) with context path '/'
+2025-08-13 19:22:31.171 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Started TrainingApiSteps in 26.708 seconds (process running for 31.074)
+2025-08-13 19:22:32.642 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-13 19:22:33.806 [http-nio-auto-1-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-13 19:22:33.807 [http-nio-auto-1-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-13 19:22:33.813 [http-nio-auto-1-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2025-08-13 19:22:34.212 [http-nio-auto-1-exec-1] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@67592672
+2025-08-13 19:22:34.979 [http-nio-auto-1-exec-1] INFO  c.e.gymapp.service.TrainingService - Notifying the secondary microservice: TrainerWorkloadRequest{username='Mike.Trainer', firstName='Mike', lastName='Trainer', isActive=true, trainingDate=2023-10-01, trainingDuration=60, actionType=ADD}
+2025-08-13 19:22:35.202 [http-nio-auto-1-exec-1] INFO  listenerLogger - Sent workload update for trainer: Mike.Trainer
+2025-08-13 19:22:35.916 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:22:35.923 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:22:36.002 [http-nio-auto-1-exec-2] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@619216b5
+2025-08-13 19:22:38.072 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:22:38.075 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:22:38.139 [http-nio-auto-1-exec-3] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@23b7e20d
+2025-08-13 19:22:40.163 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:22:40.171 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:22:40.238 [http-nio-auto-1-exec-4] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@647ed1a1
+2025-08-13 19:22:42.525 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-13 19:22:42.987 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-13 19:22:43.063 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:22:43.068 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-13 19:22:43.075 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-13 19:38:44.978 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Starting TrainingApiSteps using Java 17.0.8 with PID 13980 (started by andre in C:\Users\andre\OneDrive\Documentos\EPAM\Proyecto Spring 2\gym-app-epam-project)
+2025-08-13 19:38:44.989 [main] INFO  c.e.g.i.steps.TrainingApiSteps - The following 1 profile is active: "test"
+2025-08-13 19:38:48.805 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-13 19:38:49.271 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 443 ms. Found 5 JPA repository interfaces.
+2025-08-13 19:38:50.129 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=3682e6e7-d507-33c2-b9d5-34dcf83e6ef8
+2025-08-13 19:38:51.974 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 0 (http)
+2025-08-13 19:38:52.119 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-auto-1"]
+2025-08-13 19:38:52.136 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-13 19:38:52.137 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-13 19:38:52.390 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-13 19:38:52.393 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6714 ms
+2025-08-13 19:38:53.577 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-13 19:38:54.317 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-08-13 19:38:54.323 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-13 19:38:54.772 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-13 19:38:55.065 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-08-13 19:38:55.564 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-08-13 19:38:55.913 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2025-08-13 19:38:57.426 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-08-13 19:38:57.447 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:38:58.839 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-13 19:39:00.149 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-13 19:39:03.197 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 25 endpoints beneath base path '/actuator'
+2025-08-13 19:39:03.398 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-13 19:39:04.533 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-08-13 19:39:07.529 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-auto-1"]
+2025-08-13 19:39:07.588 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 57357 (http) with context path '/'
+2025-08-13 19:39:08.688 [main] INFO  c.e.g.i.steps.TrainingApiSteps - Started TrainingApiSteps in 25.978 seconds (process running for 29.361)
+2025-08-13 19:39:10.424 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'trainer-workload-service' URL not provided. Will try picking an instance via load-balancing.
+2025-08-13 19:39:11.285 [http-nio-auto-1-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-13 19:39:11.286 [http-nio-auto-1-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-13 19:39:11.292 [http-nio-auto-1-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2025-08-13 19:39:11.565 [http-nio-auto-1-exec-1] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@70432d32
+2025-08-13 19:39:11.887 [http-nio-auto-1-exec-1] INFO  c.e.gymapp.service.TrainingService - Notifying the secondary microservice: TrainerWorkloadRequest{username='Mike.Trainer', firstName='Mike', lastName='Trainer', isActive=true, trainingDate=2023-10-01, trainingDuration=60, actionType=ADD}
+2025-08-13 19:39:12.077 [http-nio-auto-1-exec-1] INFO  listenerLogger - Sent workload update for trainer: Mike.Trainer
+2025-08-13 19:39:12.143 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:39:12.148 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:39:12.190 [http-nio-auto-1-exec-2] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@37e292f1
+2025-08-13 19:39:14.312 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:39:14.341 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:39:14.464 [http-nio-auto-1-exec-3] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@730eb64f
+2025-08-13 19:39:16.543 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.epam.gymapp.integration.steps.TrainingApiSteps]: TrainingApiSteps does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-13 19:39:16.550 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.epam.gymapp.GymappApplication for test class com.epam.gymapp.integration.steps.TrainingApiSteps
+2025-08-13 19:39:16.653 [http-nio-auto-1-exec-4] INFO  c.e.gymapp.service.TrainingService - Saving new training: com.epam.gymapp.dto.TrainingDto@1694ce0b
+2025-08-13 19:39:19.199 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-13 19:39:20.179 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-08-13 19:39:20.318 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-13 19:39:20.333 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-13 19:39:20.346 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

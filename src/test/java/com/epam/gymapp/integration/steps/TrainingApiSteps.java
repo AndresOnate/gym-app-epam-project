@@ -17,7 +17,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,17 +38,17 @@ public class TrainingApiSteps {
     private RestTemplate restTemplate;
     private TrainerWorkloadRequest lastReceivedWorkload;
     private ResponseEntity<?> lastResponse;
+    private WorkloadSpyListener workloadSpyListener;
 
     @Autowired
     private JwtUtils jwtService;
-
-
+    
     @Before
     public void setup() {
         baseUrl = "http://localhost:" + port;
         restTemplate = new RestTemplate();
         transactionId = UUID.randomUUID().toString();
-        WorkloadSpyListener.clear();
+        workloadSpyListener = new WorkloadSpyListener();
     }
 
     @When("a training session is created with trainer {string} and trainee {string}")
@@ -100,7 +102,7 @@ public class TrainingApiSteps {
     @Then("no workload update should be received")
     public void verifyNoWorkloadUpdate() throws InterruptedException {
         Thread.sleep(2000);
-        assertNull(WorkloadSpyListener.getLastReceived(), "Expected no TrainerWorkloadRequest to be received.");
+        assertNull(workloadSpyListener.getLastReceived(), "Expected no TrainerWorkloadRequest to be received.");
     }
 
     @Then("the API should respond with HTTP {int}")
@@ -110,9 +112,9 @@ public class TrainingApiSteps {
 
     private void waitForMessage() throws InterruptedException {
         for (int i = 0; i < 10; i++) {
-            if (WorkloadSpyListener.getLastReceived() != null) break;
+            if (workloadSpyListener.getLastReceived() != null) break;
             Thread.sleep(500);
         }
-        lastReceivedWorkload = WorkloadSpyListener.getLastReceived();
+        lastReceivedWorkload = workloadSpyListener.getLastReceived();
     }
 }

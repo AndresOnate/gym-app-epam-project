@@ -22,11 +22,7 @@ public class WorkloadSpyListener {
         System.out.println("Received workload request: " + objectMapper.writeValueAsString(request));
     }
 
-    public static void clear() {
-        lastReceived = null;
-    }
-
-    public static TrainerWorkloadRequest getLastReceived() {
+    public TrainerWorkloadRequest getLastReceived() {
         return lastReceived;
     }
 }
