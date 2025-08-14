@@ -19,7 +19,7 @@ import io.jsonwebtoken.security.Keys;
 public class JwtUtils {
 
     private final String jwtSecret = "supersecretkey1234567890123456supersecretkey1234567890123456";
-    private final int jwtExpirationMs = 3600000; // 1 hora
+    private final int jwtExpirationMs = 3600000; 
 
     public String generateJwtToken(User userDetails) {
         return Jwts.builder()
@@ -31,15 +31,10 @@ public class JwtUtils {
     }
 
     public String generateToken(String subject, String transactionId) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("service", "main-microservice"); 
-        claims.put("transactionId", transactionId); 
-
         return Jwts.builder()
-                .setClaims(claims)
                 .setSubject(subject) 
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(30))) // Token válido por 30 minutos
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
                 .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -61,13 +56,13 @@ public class JwtUtils {
             return false;
         }
     }
-
+    
     public String generateServiceToken() {
         return Jwts.builder()
                 .setSubject("gym-reservation-service")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.HS256, jwtSecret)
+                .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()), SignatureAlgorithm.HS256)
                 .compact();
     }
 

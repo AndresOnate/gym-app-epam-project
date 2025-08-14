@@ -42,22 +42,18 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, Environment env) throws Exception {
-        if (Arrays.asList(env.getActiveProfiles()).contains("test")) {
-            http.csrf().disable()
-                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
-        } else {
-            http
-                .csrf().disable()
-                .cors()
-                .and()
-                .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/api/v1/auth/login", "/api/v1/trainees", "/api/v1/trainers").permitAll()
-                    .requestMatchers(HttpMethod.POST, "/api/v1/trainees", "/api/v1/trainers").authenticated()
-                    .anyRequest().authenticated()
-                )
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);
-        }
+        http
+            .csrf().disable()
+            .cors()
+            .and()
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/v1/auth/login", "/api/v1/trainees", "/api/v1/trainers").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/trainees", "/api/v1/trainers").authenticated()
+                .anyRequest().authenticated()
+            )
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);
+        
         return http.build();
     }
 

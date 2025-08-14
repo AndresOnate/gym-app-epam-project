@@ -1,82 +1,52 @@
-package com.epam.gymapp.integration;
+package com.epam.gymapp.integration.steps;
 
 
 import io.cucumber.java.Before;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.epam.gymapp.dto.TraineeDto;
-import com.epam.gymapp.dto.TrainerDto;
+
+import com.epam.gymapp.config.JwtUtils;
 import com.epam.gymapp.dto.TrainerWorkloadRequest;
 import com.epam.gymapp.dto.TrainingDto;
-import com.epam.gymapp.model.trainingType.TrainingTypeEnum;
-import com.epam.gymapp.repository.*;
-import com.epam.gymapp.service.TraineeService;
-import com.epam.gymapp.service.TrainerService;
-import com.epam.gymapp.utils.NoSecurityConfig;
-
-import io.cucumber.java.en.Given;
+import com.epam.gymapp.utils.WorkloadSpyListener;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
 
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.*;
 import org.springframework.test.context.ActiveProfiles;
-import jakarta.persistence.EntityManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
+import java.util.UUID;
 
 @CucumberContextConfiguration
-@AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-@Import(NoSecurityConfig.class)
 public class TrainingApiSteps {
 
     @LocalServerPort
     private int port;
+    private String transactionId;
     private String baseUrl;
     private RestTemplate restTemplate;
     private TrainerWorkloadRequest lastReceivedWorkload;
     private ResponseEntity<?> lastResponse;
 
     @Autowired
-    private EntityManager em;
+    private JwtUtils jwtService;
 
-    @Autowired
-    private TrainerService trainerService;
-
-    @Autowired
-    private TraineeService traineeService;
-
-    @Autowired
-    private TrainingTypeRepository trainingTypeRepository;
 
     @Before
     public void setup() {
         baseUrl = "http://localhost:" + port;
         restTemplate = new RestTemplate();
+        transactionId = UUID.randomUUID().toString();
         WorkloadSpyListener.clear();
-    }
-
-    @Given("a trainer {string} and a trainee {string} exist in the system")
-    public void setupUsers(String trainer, String trainee) {
-        assertNotNull(trainerService.findByUsername(trainer),
-            "Trainer with username " + trainer + " should exist in DB");
-        assertNotNull(traineeService.findByUsername(trainee),
-            "Trainee with username " + trainee + " should exist in DB");
-        assertNotNull(trainingTypeRepository.findByName(TrainingTypeEnum.YOGA),
-            "Training type YOGA should exist in DB");
     }
 
     @When("a training session is created with trainer {string} and trainee {string}")
@@ -111,6 +81,7 @@ public class TrainingApiSteps {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(jwtService.generateServiceToken());
         HttpEntity<TrainingDto> entity = new HttpEntity<>(request, headers);
 
         try {
