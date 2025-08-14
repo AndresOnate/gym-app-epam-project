@@ -2,12 +2,16 @@ package com.epam.gymapp.integration.steps;
 
 
 import io.cucumber.java.Before;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.epam.gymapp.config.JwtUtils;
 import com.epam.gymapp.dto.TrainerWorkloadRequest;
 import com.epam.gymapp.dto.TrainingDto;
 import com.epam.gymapp.utils.WorkloadSpyListener;
+
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
@@ -38,17 +42,28 @@ public class TrainingApiSteps {
     private RestTemplate restTemplate;
     private TrainerWorkloadRequest lastReceivedWorkload;
     private ResponseEntity<?> lastResponse;
-    private WorkloadSpyListener workloadSpyListener;
+    private String authToken;
 
     @Autowired
     private JwtUtils jwtService;
-    
+
+    @BeforeEach
+    public void clearWorkloadSpy() {
+        WorkloadSpyListener.clear();
+    }
+
     @Before
     public void setup() {
         baseUrl = "http://localhost:" + port;
         restTemplate = new RestTemplate();
         transactionId = UUID.randomUUID().toString();
-        workloadSpyListener = new WorkloadSpyListener();
+        WorkloadSpyListener.clear();
+        authToken = jwtService.generateServiceToken();
+    }
+
+    @Given("no authentication token is provided")
+    public void noAuthenticationTokenIsProvided() {
+        authToken = null;
     }
 
     @When("a training session is created with trainer {string} and trainee {string}")
@@ -60,7 +75,7 @@ public class TrainingApiSteps {
     public void createTrainingSessionWithDate(String trainer, String trainee, String type) {
         createTraining(trainer, trainee, type, LocalDate.of(2023, 10, 1));
     }
-
+    
     @When("a training session is created with trainer {string} and trainee {string} with type {string}")
     public void createTrainingSessionWithType(String trainer, String trainee, String type) {
         createTraining(trainer, trainee, type, LocalDate.of(2023, 10, 1));
@@ -72,6 +87,7 @@ public class TrainingApiSteps {
         createTraining(trainer, trainee, "YOGA", LocalDate.of(2023, 10, 2));
     }
 
+    
     private void createTraining(String trainer, String trainee, String type, LocalDate date) {
         TrainingDto request = new TrainingDto();
         request.setTrainerUsername(trainer);
@@ -83,7 +99,7 @@ public class TrainingApiSteps {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(jwtService.generateServiceToken());
+        headers.setBearerAuth(authToken);
         HttpEntity<TrainingDto> entity = new HttpEntity<>(request, headers);
 
         try {
@@ -102,7 +118,7 @@ public class TrainingApiSteps {
     @Then("no workload update should be received")
     public void verifyNoWorkloadUpdate() throws InterruptedException {
         Thread.sleep(2000);
-        assertNull(workloadSpyListener.getLastReceived(), "Expected no TrainerWorkloadRequest to be received.");
+        assertNull(WorkloadSpyListener.getLastReceived(), "Expected no TrainerWorkloadRequest to be received.");
     }
 
     @Then("the API should respond with HTTP {int}")
@@ -112,9 +128,9 @@ public class TrainingApiSteps {
 
     private void waitForMessage() throws InterruptedException {
         for (int i = 0; i < 10; i++) {
-            if (workloadSpyListener.getLastReceived() != null) break;
+            if (WorkloadSpyListener.getLastReceived() != null) break;
             Thread.sleep(500);
         }
-        lastReceivedWorkload = workloadSpyListener.getLastReceived();
+        lastReceivedWorkload = WorkloadSpyListener.getLastReceived();
     }
 }

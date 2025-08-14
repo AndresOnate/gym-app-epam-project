@@ -18,3 +18,15 @@ Feature: Crear entrenamiento y actualizar carga del trainer
     When a training session is created with trainer "Mike.Trainer" and trainee "John.Doe" with type "ZUMBA_EXTREMO"
     Then the API should respond with HTTP 400
     And no workload update should be received
+
+  Scenario: Intentar crear un entrenamiento sin nombre de trainer
+    When a training session is created with trainer "" and trainee "John.Doe"
+    Then the API should respond with HTTP 400
+    And no workload update should be received
+
+  Scenario: Intentar crear un entrenamiento sin token de autenticación
+    Given no authentication token is provided
+    When a training session is created with trainer "Mike.Trainer" and trainee "John.Doe"
+    Then the API should respond with HTTP 403
+
+
