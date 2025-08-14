@@ -21,12 +21,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
-
 import static org.junit.jupiter.api.Assertions.*;
-
+import static org.awaitility.Awaitility.await;
+import static java.util.concurrent.TimeUnit.SECONDS;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -74,6 +72,11 @@ public class TrainingApiSteps {
     @When("a training session is created with trainer {string} and trainee {string} on {string}")
     public void createTrainingSessionWithDate(String trainer, String trainee, String type) {
         createTraining(trainer, trainee, type, LocalDate.of(2023, 10, 1));
+    }
+
+    @When("a training session is created with trainer {string} and trainee {string} on date {string}")
+    public void createTrainingSessionWithDate(String trainer, String trainee, LocalDate date) {
+        createTraining(trainer, trainee,"YOGA", date);
     }
     
     @When("a training session is created with trainer {string} and trainee {string} with type {string}")
@@ -127,10 +130,11 @@ public class TrainingApiSteps {
     }
 
     private void waitForMessage() throws InterruptedException {
-        for (int i = 0; i < 10; i++) {
-            if (WorkloadSpyListener.getLastReceived() != null) break;
-            Thread.sleep(500);
-        }
+        await()
+            .atMost(5, SECONDS) 
+            .pollInterval(500, java.util.concurrent.TimeUnit.MILLISECONDS) // intervalo entre chequeos
+            .until(() -> WorkloadSpyListener.getLastReceived() != null);
+
         lastReceivedWorkload = WorkloadSpyListener.getLastReceived();
     }
 }

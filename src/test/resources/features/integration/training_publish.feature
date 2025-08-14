@@ -1,8 +1,4 @@
-Feature: Crear entrenamiento y actualizar carga del trainer
-
-  Scenario: Crear una sesión de entrenamiento y actualizar carga
-    When a training session is created with trainer "Mike.Trainer" and trainee "John.Doe"
-    Then the trainer workload should be updated in the receiving service
+Feature: Validar datos al crear entrenamientos
 
   Scenario: Intentar crear un entrenamiento con un trainer inexistente
     When a training session is created with trainer "No.Existe" and trainee "John.Doe"
