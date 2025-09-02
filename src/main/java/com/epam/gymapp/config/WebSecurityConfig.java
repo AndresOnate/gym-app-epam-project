@@ -1,12 +1,15 @@
 package com.epam.gymapp.config;
 
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -38,11 +41,11 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, Environment env) throws Exception {
         http
             .csrf().disable()
-             .cors()
-             .and()
+            .cors()
+            .and()
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/v1/auth/login", "/api/v1/trainees", "/api/v1/trainers").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/v1/trainees", "/api/v1/trainers").authenticated()
@@ -50,9 +53,10 @@ public class WebSecurityConfig {
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);
-
+        
         return http.build();
     }
+
 
 
     @Bean
