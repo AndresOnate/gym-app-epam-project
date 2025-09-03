@@ -37,3 +37,30 @@ This project is a training management system that allows the administration of `
 ### Configuration File
 
 The project uses an external properties file to configure the path for the data initialization file. Create an `application.properties` file in the root of the project with the following property:
+
+## 🚀 Ejecución de la aplicación con Docker
+
+### 1. Construir las imágenes de los microservicios
+Desde la raíz de cada microservicio:
+
+```bash
+# Main service
+cd gym-app-main
+docker build -t gymapp-main:latest .
+```
+
+```
+# Trainer Workload service
+cd trainer-workload-service
+docker build -t trainer-workload-service:latest .
+```
+
+### 2. Crear red de Docker
+```
+docker network create gym-net
+ ```
+
+### 3. Levantar los servicios con Docker Compose
+```bash
+docker-compose up -d
+```
