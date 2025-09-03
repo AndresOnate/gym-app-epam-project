@@ -1,0 +1,65 @@
+version: "3.9"
+services:
+  # Base de datos relacional
+  postgres:
+    image: postgres:16
+    container_name: gym-postgres
+    environment:
+      POSTGRES_DB: gymdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - gym-net
+
+  # MongoDB
+  mongo:
+    image: mongo:6
+    container_name: gym-mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - gym-net
+
+  # ActiveMQ
+  activemq:
+    image: rmohr/activemq:latest
+    container_name: gym-activemq
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+    networks:
+      - gym-net
+
+  # Main microservice
+  gymapp-main:
+    build:
+      context: ./main-microservice
+      dockerfile: Dockerfile
+    container_name: gymapp-main
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - activemq
+    networks:
+      - gym-net
+
+  # Trainer workload microservice
+  trainer-workload-service:
+    build:
+      context: ./trainer-workload-service
+      dockerfile: Dockerfile
+    container_name: trainer-workload-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+      - activemq
+    networks:
+      - gym-net
+
+networks:
+  gym-net:
+    driver: bridge
